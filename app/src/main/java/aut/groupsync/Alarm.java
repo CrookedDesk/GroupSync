@@ -9,7 +9,7 @@ public class Alarm {
 
 	public Alarm() {
 		// Enable alarm by default
-		this(true)
+		this(true);
 	}
 
 	public void enable() {

@@ -1,5 +1,7 @@
 package aut.groupsync;
 
+import java.util.Calendar;
+
 public class Timetable {
 	private Week week;
 

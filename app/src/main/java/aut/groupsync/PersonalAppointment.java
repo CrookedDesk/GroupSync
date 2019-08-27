@@ -1,5 +1,7 @@
 package aut.groupsync;
 
+import java.util.Date;
+
 public class PersonalAppointment extends Appointment {
 	private boolean isPrivate;
 

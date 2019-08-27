@@ -1,5 +1,8 @@
 package aut.groupsync;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Diary {
 	private List<Note> notes;
 

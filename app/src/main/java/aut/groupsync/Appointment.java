@@ -1,5 +1,7 @@
 package aut.groupsync;
 
+import java.util.Date;
+
 public class Appointment {
 	private Note note;
 	private Alarm alarm;

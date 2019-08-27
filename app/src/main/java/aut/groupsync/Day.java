@@ -1,5 +1,8 @@
 package aut.groupsync;
 
+import java.util.Date;
+import java.util.List;
+
 public class Day {
 	private List<Appointment> appointments;
 	private Date date;
@@ -14,5 +17,8 @@ public class Day {
 
 	public Date getDate() {
 		return this.date;
+	}
+
+	public String getYear() {
 	}
 }
