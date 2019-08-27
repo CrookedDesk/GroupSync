@@ -1,18 +1,17 @@
 package aut.groupsync;
 
-public class Day {
-	private List<Appointment> appointments;
-	private Date date;
+public class Diary {
+	private List<Note> notes;
 
-	public Day(Date date) {
-		this.date = date;
+	public Diary(List<Note> notes) {
+		this.notes = notes;
 	}
 
-	public List<Appointment> getAppointments() {
-		return this.appointments;
+	public Diary() {
+		this(new ArrayList<Note>());
 	}
 
-	public Date getDate() {
-		return this.date;
+	public List<Note> getNotes() {
+		return this.notes;
 	}
 }
