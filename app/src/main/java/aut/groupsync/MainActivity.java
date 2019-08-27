@@ -1,19 +1,66 @@
 package aut.groupsync;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
-public class MainActivity extends AppCompatActivity {
+import android.os.Bundle;
+import android.view.MenuItem;
+
+import com.google.android.material.navigation.NavigationView;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        int x = 1;
-        int y = 1;
-        int z = x + y;
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        int c = 5;
+        drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_timetable:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Timetable()).commit();
+                break;
+            case R.id.nav_groups:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Group()).commit();
+                break;
+            case R.id.nav_account:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Account()).commit();
+                break;
+        }
+        drawer.closeDrawer(GravityCompat.START);
+
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }
