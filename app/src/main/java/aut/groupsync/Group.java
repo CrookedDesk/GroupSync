@@ -6,37 +6,11 @@ public class Group {
     private String groupName;
     private List<Account> userList;
     private Timetable timetable;
-    private Account Admin;
 
-    Group(Account Admin, String groupName)
+    Group(String groupName, Account user)
     {
         this.groupName = groupName;
-        this.Admin = Admin;
-    }
-
-    public void setAdmin(Account user)
-    {
-        this.Admin = user;
-    }
-
-    public void inviteUser(Account user)
-    {
-        //Sending invite to user
-        //user.notifyInvite(Group this)
-    }
-
-    public void addUser(Account user)
-    {
-        //Call this when user has accepted invite
-        //userList.add(user)
-        //syncTimetable
-    }
-
-    public void removeUser(Account user)
-    {
-        //Remove user
-        //userList.remove(user)
-        //syncTimetable
+        userList.add(user); //initial user/creator
     }
 
     public void changeName(String newName)
@@ -44,27 +18,59 @@ public class Group {
         this.groupName = newName;
     }
 
+    public void inviteUser(Account user)
+    {//Sending invite to user
+        //user.notifyInvite(Group this)
+    }
+
+    public void addUser(Account user)
+    {//Call this when user has accepted invite
+        //userList.add(user)
+        //syncTimetable
+    }
+
+    public void removeUser(Account user)
+    {//Remove user
+        //if(userList.user exists)
+        //{
+        //    userList.remove(user)
+        //}
+        //syncTimetable
+    }
+
     public void addAppointment(Appointment newApp)
     {
         //timetable.addApp(newApp)
     }
 
-    public void syncTimetable()
+    public void editAppointment(Appointment oldApp)
     {
+        //timetable.editApp(oldApp)
+    }
+
+    public void syncTimetable()
+    {/*syncing the users timetables
+        Timetable temp = new Timetable();
         //copy group specific appointments into temp timetable
-        //for loop
-        // {
-        //   get user from list
-        //   get their timetable
-        //   for loop
-        //    {
-        //       get their first/second/third/etc appointment
-        //       check if corresponding time slot in group table is free
-        //       if free: copy appointment into temp group timetable without personal details
-        //       else: ignore
-        //    }
-        // }
-        //replace group timetable with temp timetable
+
+        for(int i = 0; i < userList.size(); i++)
+        {
+            Account currentUser = userList.get(i);
+            Timetable currentTable = currentUser.getTimetable();
+            for(//appointment in currentTable)
+            {
+                //if(appointment.getTime is in timetable)
+                //{
+                //  do nothing
+                //}
+                //else
+                //{
+                //  timetable.addAppointment(appointment.getTime, String groupname, etc)
+                //}
+            }
+            //replace group timetable with temp timetable
+        }
+        */
     }
 
     public String getGroupName()
@@ -72,8 +78,8 @@ public class Group {
         return groupName;
     }
 
-    public Account getAdmin()
+    public List<Account> getUsers()
     {
-        return Admin;
+        return userList;
     }
 }
