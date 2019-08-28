@@ -13,9 +13,10 @@ public class Week {
 	public String getDateText() {
 		String year = days.get(0).getYear();
 		SimpleDateFormat weekFormat = new SimpleDateFormat("MM-dd");
-		return year + ", " + weekFormat.format(days.get(0)) + " to " weekFormat.format(days.get(6));
+		return year + ", " + weekFormat.format(days.get(0)) + " to " + weekFormat.format(days.get(6));
 	}
 
-	public List getDays() {
-	}
+//	public List getDays() {
+//
+//	}
 }

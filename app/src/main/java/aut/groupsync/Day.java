@@ -20,5 +20,6 @@ public class Day {
 	}
 
 	public String getYear() {
+		return null;
 	}
 }
