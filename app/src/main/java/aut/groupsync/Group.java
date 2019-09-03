@@ -1,8 +1,10 @@
 package aut.groupsync;
 
+import androidx.fragment.app.Fragment;
+
 import java.util.List;
 
-public class Group {
+public class Group extends Fragment {
     private String groupName;
     private List<Account> userList;
     private Timetable timetable;

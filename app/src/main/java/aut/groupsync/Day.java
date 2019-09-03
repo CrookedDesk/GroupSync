@@ -1,6 +1,8 @@
 package aut.groupsync;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Day {
@@ -20,5 +22,9 @@ public class Day {
 	}
 
 	public String getYear() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int year = calendar.get(Calendar.YEAR);
+		return year + "";
 	}
 }

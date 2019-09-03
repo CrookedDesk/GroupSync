@@ -1,8 +1,10 @@
 package aut.groupsync;
 
+import androidx.fragment.app.Fragment;
+
 import java.util.Date;
 
-public class Appointment {
+public class Appointment extends Fragment {
 	private Note note;
 	private Alarm alarm;
 	private String name;

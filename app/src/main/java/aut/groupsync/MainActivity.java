@@ -1,5 +1,8 @@
 package aut.groupsync;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,10 +10,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -38,16 +40,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_timetable:
+                ArrayList<Day> days = new ArrayList<>(); // #todo set days properly
+                Timetable timetable = new Timetable(new Week(days), 0);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Timetable()).commit();
+                        timetable).commit();
                 break;
             case R.id.nav_groups:
+                String groupName = "Group Name"; // #todo set properly
+                Account user = new Account("username", "user@email.com");
+                Group group = new Group(groupName, user);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Group()).commit();
+                        group).commit();
                 break;
             case R.id.nav_account:
+                Account account = new Account("username", "user@email.com");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Account()).commit();
+                        account).commit();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
