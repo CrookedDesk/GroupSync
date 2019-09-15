@@ -1,14 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context=".Account">
+
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:visibility="visible"
+        android:contentDescription="Profile Image" />
 
     <TextView
+        android:id="@+id/profile_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Accounts Page"
-        android:textSize="30sp" />
+        android:layout_below="@id/profile_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="16sp"
+        tools:text="Irshad Kumail" />
+
+    <TextView
+        android:id="@+id/profile_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="14sp"
+        tools:text="userEmail" />
+
+    <Button
+        android:id="@+id/sign_out_button"
+        android:layout_below="@id/profile_email"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:text="SIGN OUT" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="69dp"
+        android:layout_marginBottom="36dp" />
 
 </RelativeLayout>

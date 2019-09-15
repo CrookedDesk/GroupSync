@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -38,26 +39,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Fragment fragment = null;
+        String title = getString(R.string.app_name);
+
         switch (menuItem.getItemId()) {
             case R.id.nav_timetable:
                 ArrayList<Day> days = new ArrayList<>(); // #todo set days properly
-                Timetable timetable = new Timetable(new Week(days), 0);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        timetable).commit();
+                fragment = new Timetable(new Week(days), 0);
+                title = "Time table";
                 break;
             case R.id.nav_groups:
                 String groupName = "Group Name"; // #todo set properly
                 Account user = new Account("username", "user@email.com");
-                Group group = new Group(groupName, user);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        group).commit();
+                fragment = new Group(groupName, user);
+                title = "Group";
                 break;
             case R.id.nav_account:
-                Account account = new Account("username", "user@email.com");
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        account).commit();
+                fragment = new Account("username", "user@email.com");
+                title = "Account";
                 break;
         }
+
+        if (fragment != null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    fragment).commit();
+        }
+
+        // set the toolbar title
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        }
+
+
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
