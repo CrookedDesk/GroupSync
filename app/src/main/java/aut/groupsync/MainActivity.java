@@ -15,9 +15,13 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
+import aut.groupsync.services.IUserService;
+import aut.groupsync.services.UserService;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
+    private IUserService userService = new UserService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +54,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_groups:
                 String groupName = "Group Name"; // #todo set properly
-                Account user = new Account("username", "user@email.com");
+                Account user = new Account(userService);
                 fragment = new Group(groupName, user);
                 title = "Group";
                 break;
             case R.id.nav_account:
-                fragment = new Account("username", "user@email.com");
+                fragment = new Account(userService);
                 title = "Account";
                 break;
         }
