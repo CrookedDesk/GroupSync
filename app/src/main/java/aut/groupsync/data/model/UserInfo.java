@@ -1,6 +1,7 @@
 package aut.groupsync.data.model;
 
 public class UserInfo {
+    private String password;
     private String email;
     private String displayName;
     private String error;
@@ -10,7 +11,13 @@ public class UserInfo {
         this.setEmail(email);
     }
 
-    public UserInfo(String error){
+    public UserInfo(String displayName, String email, String password) {
+        this.setDisplayName(displayName);
+        this.setEmail(email);
+        this.password = password;
+    }
+
+    public UserInfo(String error) {
         this.setError(error);
     }
 
@@ -36,5 +43,9 @@ public class UserInfo {
 
     public void setError(String error) {
         this.error = error;
+    }
+
+    public boolean checkPassword(String password) {
+        return password != null && password.equals(this.password);
     }
 }

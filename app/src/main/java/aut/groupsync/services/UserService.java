@@ -1,13 +1,12 @@
 package aut.groupsync.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import aut.groupsync.data.model.UserInfo;
 
 public class UserService implements IUserService {
-    UserInfo[] users = new UserInfo[]{
-            new UserInfo("Mandeep Kaur", "m.kaur.nz@gmail.com"),
-            new UserInfo("John Smith", "jsmith@gmail.com")
-    };
-
+    List<UserInfo> users = new ArrayList<UserInfo>();
 
     @Override
     public UserInfo login(String email, String password) {
@@ -18,7 +17,8 @@ public class UserService implements IUserService {
         }
 
 
-        if (password == null || !password.equals("123")) {
+        if (!matchingUser.checkPassword(password)) {
+
             return new UserInfo("Wrong password");
         }
 
@@ -35,8 +35,38 @@ public class UserService implements IUserService {
         return null;
     }
 
+    private boolean isNullOrEmpty(String str) {
+        return str == null || str.trim().equals("");
+    }
+
     @Override
-    public UserInfo signUp(String displayName, String name, String email, String password) {
-        return null;
+    public UserInfo signUp(String displayName, String email, String password, String passwordConfirm) {
+        String error = null;
+
+        if (isNullOrEmpty(displayName)) {
+            error = "Display name cannot be empty";
+        } else if (isNullOrEmpty(email)) {
+            error = "Email cannot be empty";
+        } else if (isNullOrEmpty(password)) {
+            error = "Password cannot be empty";
+        } else if (isNullOrEmpty(passwordConfirm)) {
+            error = "Confirm password name cannot be empty";
+        } else if (!password.equals(passwordConfirm)) {
+            error = "Confirm password does not match";
+        } else {
+            UserInfo userInfo = getUserInfo(email);
+
+            if (userInfo != null) {
+                error = "User already exists";
+            }
+        }
+
+        if (error != null) {
+            return new UserInfo(error);
+        }
+
+        UserInfo newUser = new UserInfo(displayName, email, password);
+        users.add(newUser);
+        return newUser;
     }
 }
