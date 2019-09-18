@@ -1,12 +1,15 @@
 package aut.groupsync;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 public class Timetable extends Fragment {
@@ -34,11 +37,5 @@ public class Timetable extends Fragment {
         //calendar.setTime(now);
 		//week.getDays().get(calendar.get(Calendar.DAY_OF_WEEK));
         return this.week.getDays().get(this.currentDayIndex);
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.timetable_main, container, false);
     }
 }

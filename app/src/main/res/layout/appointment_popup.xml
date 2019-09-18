@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#009688">
+
+    <LinearLayout
+        android:id="@+id/appointmentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="vertical"
+        android:layout_marginBottom="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Add Appointment?"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/clear"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutView"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appointmentLayout"
+        android:background="@color/clear">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="Appointment Name:"
+                android:textAlignment="center"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/appointmentText"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:hint="Appointment"
+                android:textAlignment="center"/>
+
+            <Button
+                android:id="@+id/confirmButton"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:text="ADD"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

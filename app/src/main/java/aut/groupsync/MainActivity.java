@@ -1,7 +1,11 @@
 package aut.groupsync;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -43,10 +47,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String title = getString(R.string.app_name);
 
         switch (menuItem.getItemId()) {
+
             case R.id.nav_timetable:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Timetable()).commit();
                 break;
+
+                //Who did this? - John
             case R.id.nav_groups:
                 String groupName = "Group Name"; // #todo set properly
                 Account user = new Account("username", "user@email.com");
@@ -63,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     fragment).commit();
         }
-
         // set the toolbar title
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
@@ -71,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         drawer.closeDrawer(GravityCompat.START);
-// just a comment
         return true;
     }
 
