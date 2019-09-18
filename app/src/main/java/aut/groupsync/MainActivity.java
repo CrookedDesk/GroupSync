@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         drawer.closeDrawer(GravityCompat.START);
-
+// just a comment
         return true;
     }
 
