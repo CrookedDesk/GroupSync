@@ -1,13 +1,58 @@
 package aut.groupsync;
 
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Group extends Fragment {
     private String groupName;
-    private List<Account> userList;
+    private List<Account> userList = new ArrayList<>();
     private Timetable timetable;
+
+    public View onCreateView(final LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        final View view = inflater.inflate(R.layout.group_page,
+                container, false);
+        Button addGroupBtn = view.findViewById(R.id.addGroupBtn);
+
+        addGroupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //instantiate the popup.xml layout file
+                View addGroupPopupLayout = inflater.inflate(R.layout.add_group_popup,null);
+
+                Button confirmAddGroupBtn = addGroupPopupLayout.findViewById(R.id.confirmAddGroupBtn);
+
+                //instantiate popup window
+                final PopupWindow popupWindow = new PopupWindow(addGroupPopupLayout, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                //display the popup window
+                popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+                //close the popup window on button click
+                confirmAddGroupBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
+            }
+        });
+        return view;
+    }
 
     Group(String groupName, Account user)
     {
