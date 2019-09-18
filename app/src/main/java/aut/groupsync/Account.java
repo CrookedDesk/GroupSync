@@ -31,6 +31,7 @@ import aut.groupsync.data.model.UserInfo;
 import aut.groupsync.services.IUserService;
 
 public class Account extends Fragment {
+    private boolean signingUp;
     private UserInfo userInfo;
     private Timetable timetable;
     private List<Group> groups = new ArrayList<Group>();
@@ -46,6 +47,15 @@ public class Account extends Fragment {
     private View userDetails;
     private View signInForm;
     private TextView signInErrorMessage;
+    private Button signUpIntiateButton;
+    private Button signUpConfirmButton;
+    private Button signUpCancelButton;
+    private EditText signUpUserDispalyName;
+    private EditText signUpEmail;
+    private EditText signUpPassword;
+    private EditText signUpPassword2;
+    private TextView signUpErrorMessage;
+    private View signUpForm;
 
 
     public Account(IUserService userService) {
@@ -95,11 +105,55 @@ public class Account extends Fragment {
         userDetails = view.findViewById(R.id.user_details);
         signInForm = view.findViewById(R.id.sign_in_form);
         signInErrorMessage = view.findViewById(R.id.sign_in_error_message);
+
+        signUpForm = view.findViewById(R.id.sign_up_form);
+        signUpUserDispalyName = view.findViewById(R.id.sign_up_display_name);
+        signUpEmail = view.findViewById(R.id.sign_up_input_email);
+        signUpPassword = view.findViewById(R.id.sign_up_input_password);
+        signUpPassword2 = view.findViewById(R.id.sign_up_input_password2);
+        signUpErrorMessage = view.findViewById(R.id.sign_up_error_message);
+
+
+        signUpIntiateButton = view.findViewById(R.id.sign_up_initiate_button);
+        signUpIntiateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSignUpIntiateButtonClick();
+            }
+        });
+        signUpConfirmButton = view.findViewById(R.id.sign_up_confirm);
+        signUpConfirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSignUpConfirmButtonClick();
+            }
+        });
+        signUpCancelButton = view.findViewById(R.id.sign_up_cancel);
+        signUpCancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSignUpCancelButtonClick();
+            }
+        });
         GoogleSignInAccount alreadyloggedAccount = GoogleSignIn.getLastSignedInAccount(getActivity());
 
         this.setUserInfoUsingGoogleSignIn(alreadyloggedAccount);
 
         return view;
+    }
+
+    private void onSignUpIntiateButtonClick(){
+        this.signingUp = true;
+        render();
+    }
+
+    private void onSignUpConfirmButtonClick(){
+
+    }
+
+    private void onSignUpCancelButtonClick(){
+        this.signingUp = false;
+        render();
     }
 
     private void onSignInButtonOnClick() {
@@ -131,6 +185,14 @@ public class Account extends Fragment {
     }
 
     private void render() {
+        if (!this.signingUp) {
+            signUpUserDispalyName.setText("");
+            signUpPassword.setText("");
+            signUpPassword2.setText("");
+            signUpEmail.setText("");
+            signUpErrorMessage.setText("");
+
+        }
         String email = this.userInfo != null ? this.userInfo.getEmail() : null;
         boolean signedIn = email != null;
         String username = this.userInfo != null ? this.userInfo.getDisplayName() : null;
@@ -141,10 +203,16 @@ public class Account extends Fragment {
         if (signedIn) {
             userDetails.setVisibility(View.VISIBLE);
             signInForm.setVisibility(View.INVISIBLE);
+            signUpForm.setVisibility(View.INVISIBLE);
+        } else if (this.signingUp) {
+            userDetails.setVisibility(View.INVISIBLE);
+            signInForm.setVisibility(View.INVISIBLE);
+            signUpForm.setVisibility(View.VISIBLE);
+
         } else {
             String error = this.userInfo != null ? this.userInfo.getError() : null;
 
-            if(error == null){
+            if (error == null) {
                 signInErrorMessage.setVisibility(View.INVISIBLE);
             } else {
 
@@ -154,6 +222,7 @@ public class Account extends Fragment {
 
             userDetails.setVisibility(View.INVISIBLE);
             signInForm.setVisibility(View.VISIBLE);
+            signUpForm.setVisibility(View.INVISIBLE);
         }
     }
 

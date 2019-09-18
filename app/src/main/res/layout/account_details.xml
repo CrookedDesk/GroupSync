@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:hint="Password"></EditText>
+            android:hint="Password"/>
 
         <TextView
             android:id="@+id/sign_in_error_message"
@@ -88,7 +88,76 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-
+        <Button
+            android:id="@+id/sign_up_initiate_button"
+            android:layout_width="140dp"
+            android:minHeight="57dp"
+            android:layout_height="wrap_content"
+            android:text="Sign up" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/sign_up_form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:minWidth="300dp"
+        android:visibility="invisible"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/sign_up_display_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Display name">
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/sign_up_input_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Email"/>
+        <EditText
+            android:id="@+id/sign_up_input_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Password"/>
+        <EditText
+            android:id="@+id/sign_up_input_password2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Confirm Password"/>
+        <TextView
+            android:id="@+id/sign_up_error_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            tools:text="" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="300dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/sign_up_cancel"
+                android:layout_width="140dp"
+                android:minHeight="57dp"
+                android:layout_height="wrap_content"
+                android:text="Cancel" />
+            <Button
+                android:id="@+id/sign_up_confirm"
+                android:layout_width="140dp"
+                android:minHeight="57dp"
+                android:layout_height="wrap_content"
+                android:text="Sign Up" />
+        </LinearLayout>
+
+    </LinearLayout>
 </RelativeLayout>
