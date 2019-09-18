@@ -44,9 +44,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (menuItem.getItemId()) {
             case R.id.nav_timetable:
-                ArrayList<Day> days = new ArrayList<>(); // #todo set days properly
-                fragment = new Timetable(new Week(days), 0);
-                title = "Time table";
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Timetable()).commit();
                 break;
             case R.id.nav_groups:
                 String groupName = "Group Name"; // #todo set properly
