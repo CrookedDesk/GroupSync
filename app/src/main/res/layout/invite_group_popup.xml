@@ -6,13 +6,13 @@
     android:layout_margin="20dp"
     android:padding="20dp"
     android:background="#000"
-    android:id="@+id/groupPopupLayout">
+    android:id="@+id/inviteGroupPopupLayout">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#fff"
-        android:text="Group Name" />
+        android:text="User Email" />
 
 
 
@@ -21,19 +21,14 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:background="#fff"
-        android:hint="Name"
-        android:id="@+id/groupNameEditTxt"/>
+        android:hint="example@example.com"
+        android:id="@+id/userEmailInviteEditTxt"/>
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Invite Users"
-        android:id="@+id/inviteUserBtn"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confirm"
-        android:id="@+id/confirmAddGroupBtn"/>
+        android:text="Invite"
+        android:id="@+id/inviteUserPopupBtn"/>
 
 </LinearLayout>

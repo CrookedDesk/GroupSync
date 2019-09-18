@@ -28,6 +28,7 @@ public class Group extends Fragment {
                 container, false);
         Button addGroupBtn = view.findViewById(R.id.addGroupBtn);
 
+
         addGroupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,18 +38,49 @@ public class Group extends Fragment {
                 Button confirmAddGroupBtn = addGroupPopupLayout.findViewById(R.id.confirmAddGroupBtn);
 
                 //instantiate popup window
-                final PopupWindow popupWindow = new PopupWindow(addGroupPopupLayout, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                final PopupWindow createGroupPopupW = new PopupWindow(addGroupPopupLayout, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
                 //display the popup window
-                popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+                createGroupPopupW.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+
 
                 //close the popup window on button click
                 confirmAddGroupBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        popupWindow.dismiss();
+                        createGroupPopupW.dismiss();
                     }
                 });
+
+                final Button inviteUsersButton = createGroupPopupW.getContentView().findViewById(R.id.inviteUserBtn);
+
+                View inviteUserPopupLayout = inflater.inflate(R.layout.invite_group_popup, null);
+                final PopupWindow inviteUserPopupW = new PopupWindow(inviteUserPopupLayout, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                if (inviteUsersButton != null) {
+                    inviteUsersButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            inviteUserPopupW.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+                            Button inviteUserButtonInPopup = inviteUserPopupW.getContentView().findViewById(R.id.inviteUserPopupBtn);
+
+                            if (inviteUserButtonInPopup != null) {
+                                inviteUserButtonInPopup.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        inviteUserPopupW.dismiss();
+                                    }
+                                });
+                            }
+                        }
+                    });
+
+
+
+                }
+
             }
         });
         return view;
