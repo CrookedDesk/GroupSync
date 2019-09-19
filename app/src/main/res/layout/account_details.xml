@@ -1,60 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Account">
 
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:visibility="visible"
-        android:contentDescription="Profile Image" />
-
-    <TextView
-        android:id="@+id/profile_text"
+    <LinearLayout
+        android:id="@+id/user_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/profile_image"
+        android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp"
-        android:layout_marginBottom="10dp"
-        android:textSize="16sp"
-        tools:text="Irshad Kumail" />
+        android:minWidth="300dp"
+        android:orientation="vertical"
+        android:visibility="invisible">
 
-    <TextView
-        android:id="@+id/profile_email"
+        <TextView
+            android:id="@+id/profile_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            tools:text="Profile Text" />
+
+        <TextView
+            android:id="@+id/profile_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            tools:text="userEmail" />
+
+        <Button
+            android:id="@+id/sign_out_button"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="SIGN OUT" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sign_in_form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/profile_text"
+        android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
-        android:layout_marginBottom="10dp"
-        android:textSize="14sp"
-        tools:text="userEmail" />
+        android:minWidth="300dp"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/sign_out_button"
-        android:layout_below="@id/profile_email"
-        android:layout_width="140dp"
+        <EditText
+            android:id="@+id/input_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Email">
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/input_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Password"/>
+
+        <TextView
+            android:id="@+id/sign_in_error_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            tools:text="" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="300dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/sign_in_button"
+                android:layout_width="140dp"
+                android:minHeight="57dp"
+                android:layout_height="wrap_content"
+                android:text="Sign In" />
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/google_sign_in_button"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/sign_up_initiate_button"
+            android:layout_width="140dp"
+            android:minHeight="57dp"
+            android:layout_height="wrap_content"
+            android:text="Sign up" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sign_up_form"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
-        android:text="SIGN OUT" />
+        android:minWidth="300dp"
+        android:visibility="invisible"
+        android:orientation="vertical">
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/profile_email"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="69dp"
-        android:layout_marginBottom="36dp" />
+        <EditText
+            android:id="@+id/sign_up_display_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Display name">
 
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/sign_up_input_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Email"/>
+        <EditText
+            android:id="@+id/sign_up_input_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Password"/>
+        <EditText
+            android:id="@+id/sign_up_input_password2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Confirm Password"/>
+        <TextView
+            android:id="@+id/sign_up_error_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            tools:text="" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="300dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/sign_up_cancel"
+                android:layout_width="140dp"
+                android:minHeight="57dp"
+                android:layout_height="wrap_content"
+                android:text="Cancel" />
+            <Button
+                android:id="@+id/sign_up_confirm"
+                android:layout_width="140dp"
+                android:minHeight="57dp"
+                android:layout_height="wrap_content"
+                android:text="Sign Up" />
+        </LinearLayout>
+
+    </LinearLayout>
 </RelativeLayout>
