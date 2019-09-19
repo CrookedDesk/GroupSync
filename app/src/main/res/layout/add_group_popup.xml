@@ -15,14 +15,14 @@
         android:text="Group Name" />
 
 
-
     <EditText
+        android:id="@+id/groupNameEditTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
         android:background="#fff"
         android:hint="Name"
-        android:id="@+id/groupNameEditTxt"/>
+        android:inputType="textShortMessage"
+        android:padding="5dp" />
 
     <Button
         android:layout_width="wrap_content"

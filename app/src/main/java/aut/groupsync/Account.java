@@ -149,5 +149,6 @@ public class Account extends Fragment {
     public List<Group> getGroups() {
         return this.groups;
     }
+
 }
 
