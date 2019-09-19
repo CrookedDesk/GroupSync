@@ -127,6 +127,32 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:hint="Password"/>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/linear"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/password_strength_meter"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:max="100"
+                android:maxHeight="20dp"
+                android:minHeight="20dp"
+                android:progress="0"
+                android:progressDrawable="@drawable/progressbar"
+                android:secondaryProgress="100"
+                android:textColor="@android:color/black"
+                android:textSize="18dp" />
+        </LinearLayout>
         <EditText
             android:id="@+id/sign_up_input_password2"
             android:layout_width="match_parent"
