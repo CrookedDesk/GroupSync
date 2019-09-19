@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -19,6 +20,7 @@ public class Group extends Fragment {
     private String groupName;
     private List<Account> userList = new ArrayList<>();
     private Timetable timetable;
+    private Account currentUser;
 
     public View onCreateView(final LayoutInflater inflater,
                              ViewGroup container,
@@ -49,6 +51,9 @@ public class Group extends Fragment {
                 confirmAddGroupBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        TextView name = (TextView) getView().findViewById(R.id.groupNameEditTxt); //Get text from user input
+                        String grpName = name.getText().toString(); //save text into string
+                        Group newGrp = new Group(grpName); //create group with previous text
                         createGroupPopupW.dismiss();
                     }
                 });
@@ -86,10 +91,16 @@ public class Group extends Fragment {
         return view;
     }
 
-    Group(String groupName, Account user)
+    Group(String groupName)
     {
         this.groupName = groupName;
-        userList.add(user); //initial user/creator
+        initiateTestAccount();
+        userList.add(currentUser); //initial user/creator
+    }
+
+    private void initiateTestAccount()
+    {
+        this.currentUser = new Account("DylanHarding", "sdp0982@autuni.ac.nz");
     }
 
     public void changeName(String newName)
@@ -97,29 +108,47 @@ public class Group extends Fragment {
         this.groupName = newName;
     }
 
-    public void inviteUser(Account user)
-    {//Sending invite to user
-        //user.notifyInvite(Group this)
-    }
-
     public void addUser(Account user)
-    {//Call this when user has accepted invite
-        //userList.add(user)
-        //syncTimetable
+    {
+        userList.add(user);
     }
 
     public void removeUser(Account user)
-    {//Remove user
-        //if(userList.user exists)
-        //{
-        //    userList.remove(user)
-        //}
-        //syncTimetable
+    {
+        if(userList.contains(user))
+        {
+            userList.remove(user);
+        }
     }
 
-    public void addAppointment(Appointment newApp)
+    public void addAppointment(Appointment newApp, String day)
     {
-        //timetable.addApp(newApp)
+        int dayofweek = 1;
+        switch(day.toLowerCase())
+        {
+            case "monday":
+                dayofweek = 1;
+                break;
+            case "tuesday":
+                dayofweek = 2;
+                break;
+            case "wednesday":
+                dayofweek = 3;
+                break;
+            case "thursday":
+                dayofweek = 4;
+                break;
+            case "friday":
+                dayofweek = 5;
+                break;
+            case "saturday":
+                dayofweek = 6;
+                break;
+            case "sunday":
+                dayofweek = 7;
+                break;
+        }
+        this.timetable.getWeek().getDays().get(dayofweek-1).addAppointment(newApp);
     }
 
     public void editAppointment(Appointment oldApp)

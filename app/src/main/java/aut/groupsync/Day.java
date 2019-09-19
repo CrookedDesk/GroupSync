@@ -27,4 +27,8 @@ public class Day {
 		int year = calendar.get(Calendar.YEAR);
 		return year + "";
 	}
+
+	public void addAppointment(Appointment app) {
+		appointments.add(app);
+	}
 }
