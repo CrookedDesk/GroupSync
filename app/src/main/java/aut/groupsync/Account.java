@@ -3,12 +3,15 @@ package aut.groupsync;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,6 +32,7 @@ import java.util.List;
 
 import aut.groupsync.data.model.UserInfo;
 import aut.groupsync.services.IUserService;
+import aut.groupsync.services.PasswordStrengthService;
 
 public class Account extends Fragment {
     private boolean signingUp;
@@ -50,7 +54,8 @@ public class Account extends Fragment {
     private EditText signUpPassword2;
     private TextView signUpErrorMessage;
     private View signUpForm;
-
+    private ProgressBar passwordStrengthMeter;
+    private PasswordStrengthService passwordStrengthService = new PasswordStrengthService();
 
     public Account(IUserService userService) {
         this.userService = userService;
@@ -129,6 +134,27 @@ public class Account extends Fragment {
                 onSignUpCancelButtonClick();
             }
         });
+
+
+        passwordStrengthMeter = view.findViewById(R.id.password_strength_meter);
+        signUpPassword.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String password = signUpPassword.getText().toString();
+                int passwordStrength = passwordStrengthService.getPasswordStrength(password);
+                passwordStrengthMeter.setProgress(passwordStrength);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+
+
         GoogleSignInAccount alreadyloggedAccount = GoogleSignIn.getLastSignedInAccount(getActivity());
 
         this.setUserInfoUsingGoogleSignIn(alreadyloggedAccount);
