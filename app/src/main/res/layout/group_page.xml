@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="90dp"
-    tools:context="aut.groupsync.Group">
+    tools:context="aut.groupsync.GroupView">
 
     <Button
         android:id="@+id/addGroupBtn"

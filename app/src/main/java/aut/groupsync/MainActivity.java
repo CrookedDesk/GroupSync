@@ -1,11 +1,7 @@
 package aut.groupsync;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,8 +12,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.ArrayList;
 
 import aut.groupsync.services.IUserService;
 import aut.groupsync.services.UserService;
@@ -59,14 +53,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 //Who did this? - John
             case R.id.nav_groups:
-                String groupName = "Group Name"; // #todo set properly
-                Account user = new Account(userService);
-                fragment = new Group(groupName, user);
-                title = "Group";
+                String groupName = "GroupView Name"; // #todo set properly
+                AccountView user = new AccountView(userService);
+                fragment = new GroupView(groupName, user);
+                title = "GroupView";
                 break;
             case R.id.nav_account:
-                fragment = new Account(userService);
-                title = "Account";
+                fragment = new AccountView(userService);
+                title = "AccountView";
                 break;
         }
 

@@ -34,13 +34,13 @@ import aut.groupsync.data.model.UserInfo;
 import aut.groupsync.services.IUserService;
 import aut.groupsync.services.PasswordStrengthService;
 
-public class Account extends Fragment {
+public class AccountView extends Fragment {
     private boolean signingUp;
     private UserInfo userInfo;
     private Timetable timetable;
-    private List<Group> groups = new ArrayList<Group>();
+    private List<GroupView> groups = new ArrayList<GroupView>();
     private GoogleSignInClient googleSignInClient;
-    private static final String TAG = "Account";
+    private static final String TAG = "AccountView";
     private TextView profileName, profileEmail;
     private IUserService userService;
     private EditText inputPassword;
@@ -57,7 +57,7 @@ public class Account extends Fragment {
     private ProgressBar passwordStrengthMeter;
     private PasswordStrengthService passwordStrengthService = new PasswordStrengthService();
 
-    public Account(IUserService userService) {
+    public AccountView(IUserService userService) {
         this.userService = userService;
     }
 
@@ -296,18 +296,5 @@ public class Account extends Fragment {
             this.setUserInfo(new UserInfo(googleSignInAccount.getDisplayName(), googleSignInAccount.getEmail()));
         }
     }
-
-    public Timetable getTimetable() {
-        return this.timetable;
-    }
-
-    public void setTimetable(Timetable timetable) {
-        this.timetable = timetable;
-    }
-
-    public List<Group> getGroups() {
-        return this.groups;
-    }
-
 }
 
