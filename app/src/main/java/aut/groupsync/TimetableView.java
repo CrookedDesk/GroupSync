@@ -305,16 +305,16 @@ public class TimetableView extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
+            if (resultCode == Activity.RESULT_OK) {
                 String result = data.getStringExtra("result");
                 twelveAm.setText(result);
                 twelveAm.setBackgroundColor(Color.GRAY);
             }
-            if (resultCode == RESULT_CANCELED) {
+            if (resultCode == Activity.RESULT_CANCELED) {
 
                 twelveAm.setText("Nothing is selected");
             }
@@ -519,7 +519,7 @@ public class TimetableView extends AppCompatActivity {
                 fivePm.setText(result);
                 fivePm.setBackgroundColor(Color.GRAY);
             }
-            if (resultCode == RESULT_CANCELED) {
+            if (resultCode == Activity.RESULT_CANCELED) {
 
                 fivePm.setText("Nothing is selected");
             }
