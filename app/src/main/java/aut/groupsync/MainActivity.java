@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (menuItem.getItemId()) {
 
             case R.id.nav_timetable:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Timetable()).commit();
+                Intent intent = new Intent(this,TimetableView.class);
+                startActivity(intent);
                 break;
 
                 //Who did this? - John
