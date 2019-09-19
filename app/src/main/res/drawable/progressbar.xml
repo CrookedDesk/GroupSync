@@ -27,22 +27,6 @@
         </shape>
     </clip>
 </item>
-<!-- <item android:id="@android:id/progress">
-    <clip>
-        <shape>
-            <corners android:radius="25dp" />
-            <gradient
-               android:angle="360"
-               android:startColor="#A9E02A"
-               android:centerColor="#59820E"
-               android:centerY="0.75"
-               android:endColor="#7BAC18"
-               />
-        </shape>
-    </clip>
-</item> -->
-
-
 <item android:id="@android:id/progress">
     <clip>
         <shape>
