@@ -52,7 +52,8 @@ public class GroupView extends Fragment {
                     public void onClick(View v) {
                         TextView name = (TextView) getView().findViewById(R.id.groupNameEditTxt); //Get text from user input
                         String grpName = name.getText().toString(); //save text into string
-                        GroupView newGrp = new GroupView(grpName); //create group with previous text
+                        Group newGrp = new Group(grpName); //create group with previous text
+                        //pass group to database
                         createGroupPopupW.dismiss();
                     }
                 });
@@ -88,13 +89,6 @@ public class GroupView extends Fragment {
             }
         });
         return view;
-    }
-
-    GroupView(String groupName)
-    {
-        this.groupName = groupName;
-        initiateTestUser();
-        userList.add(currentUser); //initial user/creator
     }
 
     private void initiateTestUser()

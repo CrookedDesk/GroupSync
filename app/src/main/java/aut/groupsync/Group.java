@@ -43,7 +43,9 @@ public class Group {
 
     public void addAppointment(Appointment newApp, int dayOfWeek)
     {
-        this.timetable.getWeek().getDays().get(dayOfWeek).addAppointment(newApp);
+        //get information from input
+        //save into string
+        this.timetable.getWeek(/*get whatever week you're on atm*/).getDays().get(dayOfWeek/*get from button number*/).addAppointment(/*string*/newApp);
     }
 
     public void editAppointment(Appointment oldApp)

@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_groups:
                 String groupName = "GroupView Name"; // #todo set properly
                 AccountView user = new AccountView(userService);
-                fragment = new GroupView(groupName, user);
+                fragment = new GroupView();
                 title = "GroupView";
                 break;
             case R.id.nav_account:
