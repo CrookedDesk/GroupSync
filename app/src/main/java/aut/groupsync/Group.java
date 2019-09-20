@@ -1,5 +1,6 @@
 package aut.groupsync;
 
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,51 +11,47 @@ public class Group {
     private Timetable timetable;
     private User currentUser;
 
-    public Group(String groupName)
-    {
+    public Group(String groupName) {
         this.groupName = groupName;
         initiateTestUser();
         userList.add(currentUser); //initial user/creator
     }
 
-    private void initiateTestUser()
-    {
+    private void initiateTestUser() {
         this.currentUser = new User("DylanHarding", "sdp0982@autuni.ac.nz");
     }
 
-    public void changeName(String newName)
-    {
+    public void changeName(String newName) {
         this.groupName = newName;
     }
 
-    public void addUser(User user)
-    {
+    public void addUser(User user) {
         userList.add(user);
     }
 
-    public void removeUser(User user)
-    {
-        if(userList.contains(user))
-        {
+    /**
+     * Returns true if the removal was successful.
+     **/
+    public boolean removeUser(User user) {
+        if (userList.contains(user)) {
             userList.remove(user);
+            return true;
         }
-        //else return error message to user
+        return false;
     }
 
-    public void addAppointment(Appointment newApp, int dayOfWeek)
-    {
+
+    public void addAppointment(Appointment newApp, DayOfWeek dayOfWeek) {
         //get information from input
         //save into string
-        this.timetable.getWeek(/*get whatever week you're on atm*/).getDays().get(dayOfWeek/*get from button number*/).addAppointment(/*string*/newApp);
+        this.timetable.getWeek(/*get whatever week you're on atm*/).getDays().get(dayOfWeek.ordinal()/*get from button number*/).addAppointment(/*string*/newApp);
     }
 
-    public void editAppointment(Appointment oldApp)
-    {
+    public void editAppointment(Appointment oldApp) {
         //timetable.editApp(oldApp)
     }
 
-    public void syncTimetable()
-    {/*syncing the users timetables
+    public void syncTimetable() {/*syncing the users timetables
         Timetable temp = new Timetable();
         //copy group specific appointments into temp timetable
 
@@ -78,13 +75,11 @@ public class Group {
         */
     }
 
-    public String getGroupName()
-    {
+    public String getGroupName() {
         return groupName;
     }
 
-    public List<User> getUsers()
-    {
+    public List<User> getUsers() {
         return userList;
     }
 }

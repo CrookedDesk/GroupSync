@@ -8,7 +8,7 @@ public class User {
     private String email;
     private Timetable timetable;
     private Diary diary;
-    private List<GroupView> groups = new ArrayList<GroupView>();
+    private List<Group> groups = new ArrayList<Group>();
 
     public User(String username, String email) {
         this.username = username;
@@ -30,7 +30,7 @@ public class User {
         return timetable;
     }
 
-    public List<GroupView> getGroups()
+    public List<Group> getGroups()
     {
         return groups;
     }
