@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -50,7 +51,7 @@ public class GroupView extends Fragment {
                 confirmAddGroupBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        TextView name = (TextView) getView().findViewById(R.id.groupNameEditTxt); //Get text from user input
+                        EditText name = createGroupPopupW.getContentView().findViewById(R.id.groupNameEditTxt); //Get text from user input
                         String grpName = name.getText().toString(); //save text into string
                         Group newGrp = new Group(grpName); //create group with previous text
                         //pass group to database
