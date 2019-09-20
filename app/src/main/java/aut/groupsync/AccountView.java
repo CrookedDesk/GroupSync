@@ -286,6 +286,9 @@ public class AccountView extends Fragment {
 
     private void setUserInfo(UserInfo userInfo) {
         this.userInfo = userInfo;
+        signUpEmail = getView().findViewById(R.id.sign_up_input_email);
+        String email = signUpEmail.getText().toString();
+        User newUser = new User(email, email);
         render();
     }
 
