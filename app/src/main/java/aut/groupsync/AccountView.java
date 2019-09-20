@@ -56,7 +56,8 @@ public class AccountView extends Fragment {
     private View signUpForm;
     private ProgressBar passwordStrengthMeter;
     private PasswordStrengthService passwordStrengthService = new PasswordStrengthService();
-
+    private User newUser;
+    
     public AccountView(IUserService userService) {
         this.userService = userService;
     }
@@ -289,6 +290,7 @@ public class AccountView extends Fragment {
         signUpEmail = getView().findViewById(R.id.sign_up_input_email);
         String email = signUpEmail.getText().toString();
         User newUser = new User(email, email);
+        this.newUser = newUser;
         render();
     }
 
