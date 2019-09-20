@@ -22,6 +22,15 @@ public class GroupView extends Fragment {
     private Timetable timetable;
     private User currentUser;
 
+    public static PopupWindow displayPopupWindow(View popupLayout, View onView) {
+        final PopupWindow popupWindow = new PopupWindow(popupLayout, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        //display the popup window
+        popupWindow.showAtLocation(onView, Gravity.CENTER, 0, 0);
+
+        return popupWindow;
+    }
+
     public View onCreateView(final LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,10 +49,8 @@ public class GroupView extends Fragment {
                 Button confirmAddGroupBtn = addGroupPopupLayout.findViewById(R.id.confirmAddGroupBtn);
 
                 //instantiate popup window
-                final PopupWindow createGroupPopupW = new PopupWindow(addGroupPopupLayout, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-                //display the popup window
-                createGroupPopupW.showAtLocation(view, Gravity.CENTER, 0, 0);
+                final PopupWindow createGroupPopupW = displayPopupWindow(addGroupPopupLayout, view);
 
 
 
@@ -54,7 +61,9 @@ public class GroupView extends Fragment {
                         EditText name = createGroupPopupW.getContentView().findViewById(R.id.groupNameEditTxt); //Get text from user input
                         String grpName = name.getText().toString(); //save text into string
                         Group newGrp = new Group(grpName); //create group with previous text
+                        currentUser.getGroups().add(newGrp);
                         //pass group to database
+
                         createGroupPopupW.dismiss();
                     }
                 });
