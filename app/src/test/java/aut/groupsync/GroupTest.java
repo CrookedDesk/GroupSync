@@ -112,10 +112,13 @@ public class GroupTest {
         // Get the confirm button
         Button confirmButton = addGroupPopupLayout.findViewById(R.id.confirmAddGroupBtn);
 
+        int initialUserGroupSize = GroupView.currentUser.getGroups().size();
         confirmButton.performClick();
 
         // Check if the UI popup is still showing when the confirmation button is clicked.
         assertTrue(createGroupPopupW == null || !createGroupPopupW.isShowing());
 
+        // Check if group list of the current user has been incremented.
+        assertEquals(GroupView.currentUser.getGroups().size(), initialUserGroupSize+1);
     }
 }

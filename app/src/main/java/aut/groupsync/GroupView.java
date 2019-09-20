@@ -20,7 +20,7 @@ public class GroupView extends Fragment {
     private String groupName;
     private List<User> userList = new ArrayList<>();
     private Timetable timetable;
-    private User currentUser;
+    public static User currentUser;
 
     public static PopupWindow displayPopupWindow(View popupLayout, View onView) {
         final PopupWindow popupWindow = new PopupWindow(popupLayout, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
