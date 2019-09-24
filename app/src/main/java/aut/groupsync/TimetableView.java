@@ -48,20 +48,6 @@ public class TimetableView extends Fragment {
                 final PopupWindow createAppointment = displayPopupWindow(addAppointment, view);
 
                 //working on passing data around
-
-                final Button confirmButton = (Button) view.findViewById(R.id.confirmButton);
-                confirmButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        //getting text from user input
-                        // tried
-//                        EditText editText = (EditText) view.findViewById(R.id.appointmentText);
-//                        String string = editText.getText().toString();
-//
-//                        twelveAm.setText(string);
-//                        twelveAm.setBackgroundColor(Color.GRAY);
-                    }
-                });
             }
         });
 
