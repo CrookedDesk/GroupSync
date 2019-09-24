@@ -46,6 +46,8 @@ public class TimetableView extends Fragment {
                 View addAppointment = inflater.inflate(R.layout.appointment_popup, null);
 
                 final PopupWindow createAppointment = displayPopupWindow(addAppointment, view);
+                createAppointment.setFocusable(true);
+                createAppointment.update();
 
                 //working on passing data around
             }
