@@ -51,7 +51,8 @@ public class GroupView extends Fragment {
                 //instantiate popup window
 
                 final PopupWindow createGroupPopupW = displayPopupWindow(addGroupPopupLayout, view);
-
+                createGroupPopupW.setFocusable(true);
+                createGroupPopupW.update();
 
                 //close the popup window on button click
                 confirmAddGroupBtn.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +61,7 @@ public class GroupView extends Fragment {
                         EditText name = createGroupPopupW.getContentView().findViewById(R.id.groupNameEditTxt); //Get text from user input
                         String grpName = name.getText().toString(); //save text into string
                         Group newGrp = new Group(grpName); //create group with previous text
-                        currentUser.getGroups().add(newGrp);
+                        if (currentUser != null) currentUser.getGroups().add(newGrp);
                         //pass group to database
 
                         createGroupPopupW.dismiss();
@@ -71,6 +72,8 @@ public class GroupView extends Fragment {
 
                 View inviteUserPopupLayout = inflater.inflate(R.layout.invite_group_popup, null);
                 final PopupWindow inviteUserPopupW = new PopupWindow(inviteUserPopupLayout, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                inviteUserPopupW.setFocusable(true);
+                inviteUserPopupW.update();
 
                 if (inviteUsersButton != null) {
                     inviteUsersButton.setOnClickListener(new View.OnClickListener() {
