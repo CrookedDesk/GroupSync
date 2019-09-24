@@ -53,7 +53,6 @@ public class GroupView extends Fragment {
                 final PopupWindow createGroupPopupW = displayPopupWindow(addGroupPopupLayout, view);
 
 
-
                 //close the popup window on button click
                 confirmAddGroupBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
