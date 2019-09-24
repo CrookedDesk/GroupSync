@@ -1,11 +1,7 @@
 package aut.groupsync;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,8 +12,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -49,17 +43,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (menuItem.getItemId()) {
 
             case R.id.nav_timetable:
-                Intent intent = new Intent(this,TimetableView.class);
-                startActivity(intent);
+                fragment = new TimetableView();
+                title = "Timetable";
                 break;
 
-                //Who did this? - John
             case R.id.nav_groups:
                 String groupName = "Group Name"; // #todo set properly
                 Account user = new Account("username", "user@email.com");
                 fragment = new Group(groupName, user);
                 title = "Group";
                 break;
+
             case R.id.nav_account:
                 fragment = new Account("username", "user@email.com");
                 title = "Account";
