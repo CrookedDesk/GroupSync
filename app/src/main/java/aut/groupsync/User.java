@@ -30,10 +30,9 @@ public class User {
         return timetable;
     }
 
-    public List<Group> getGroups()
-    {
-        return groups;
-    }
+    public List<Group> getGroups() { return groups; }
+
+    public void addGroup(Group newGrp) { groups.add(newGrp);}
 
     public Diary getDiary()
     {

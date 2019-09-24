@@ -57,7 +57,7 @@ public class AccountView extends Fragment {
     private ProgressBar passwordStrengthMeter;
     private PasswordStrengthService passwordStrengthService = new PasswordStrengthService();
     private User newUser;
-    
+
     public AccountView(IUserService userService) {
         this.userService = userService;
     }
