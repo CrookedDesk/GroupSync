@@ -46,12 +46,14 @@ public class TimetableView extends Fragment {
 
                 final PopupWindow createAppointment = displayPopupWindow(addAppointment, view);
 
-
+                //working on passing data around
             }
         });
 
         return view;
     }
+
+    // Please don't delete below using it as reference for code - John 
 
     //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
