@@ -30,6 +30,8 @@ public class PopUpWindow extends Fragment {
         return view;
     }
 
+    // Please don't delete still using this as a reference - code
+
     //    @Override
 //    protected void onCreate(@Nullable Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
@@ -47,13 +48,27 @@ public class TimetableView extends Fragment {
                 final PopupWindow createAppointment = displayPopupWindow(addAppointment, view);
 
                 //working on passing data around
+
+                final Button confirmButton = (Button) view.findViewById(R.id.confirmButton);
+                confirmButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //getting text from user input
+                        // tried
+//                        EditText editText = (EditText) view.findViewById(R.id.appointmentText);
+//                        String string = editText.getText().toString();
+//
+//                        twelveAm.setText(string);
+//                        twelveAm.setBackgroundColor(Color.GRAY);
+                    }
+                });
             }
         });
 
         return view;
     }
 
-    // Please don't delete below using it as reference for code - John 
+    // Please don't delete below using it as reference for code - John
 
     //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
