@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
@@ -24,6 +25,10 @@ public class TimetableView extends Fragment {
 
     // PM Buttons
     Button twelvePm, onePm, twoPm, threePm, fourPm, fivePm, sixPm, sevenPm, eightPm, ninePm, tenPm, elevenPm;
+
+    Button confirmButton;
+    EditText editText;
+    String userAppointment;
 
     public static PopupWindow displayPopupWindow(View popupLayout, View onView){
         final PopupWindow popupWindow = new PopupWindow(popupLayout, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -48,7 +53,7 @@ public class TimetableView extends Fragment {
                 createAppointment.setFocusable(true);
                 createAppointment.update();
 
-
+                ///.setText(userAppointment);
             }
         });
 
