@@ -10,10 +10,6 @@ import androidx.test.core.app.ApplicationProvider;
 
 import org.junit.Test;
 
-
-import java.time.DayOfWeek;
-import java.util.Date;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

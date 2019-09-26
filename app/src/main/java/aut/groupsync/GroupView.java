@@ -61,7 +61,11 @@ public class GroupView extends Fragment {
                         EditText name = createGroupPopupW.getContentView().findViewById(R.id.groupNameEditTxt); //Get text from user input
                         String grpName = name.getText().toString(); //save text into string
                         Group newGrp = new Group(grpName); //create group with previous text
-                        currentUser.getGroups().add(newGrp);
+                        if (currentUser != null) {
+                            currentUser.getGroups().add(newGrp);
+                        }
+
+
                         //pass group to database
 
                         createGroupPopupW.dismiss();
