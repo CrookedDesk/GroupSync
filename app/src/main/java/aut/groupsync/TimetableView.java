@@ -49,6 +49,8 @@ public class TimetableView extends Fragment {
             public void onClick(View v) {
                 View addAppointment = inflater.inflate(R.layout.appointment_popup, null);
 
+                confirmButton = addAppointment.findViewById(R.id.confirmButton);
+
                 final PopupWindow createAppointment = displayPopupWindow(addAppointment, view);
                 createAppointment.setFocusable(true);
                 createAppointment.update();
