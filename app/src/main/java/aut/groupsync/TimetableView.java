@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,14 +28,15 @@ public class TimetableView extends Fragment {
     // PM Buttons
     Button twelvePm, onePm, twoPm, threePm, fourPm, fivePm, sixPm, sevenPm, eightPm, ninePm, tenPm, elevenPm;
 
-    EditText userAppointment;
-    String appointmentName;
-    Button confirmButton;
+    EditText userAppointment, userNote;
+    String appointmentName, notes;
+    Button confirmButton, deleteButton;
+    View addAppointment, view;
 
-    public static PopupWindow displayPopupWindow(View popupLayout, View onView){
-        final PopupWindow popupWindow = new PopupWindow(popupLayout, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+    public static PopupWindow displayPopupWindow(View popupLayout, View onView) {
+        final PopupWindow popupWindow = new PopupWindow(popupLayout, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        popupWindow.showAtLocation(onView, Gravity.CENTER, 0, 0);
+        popupWindow.showAtLocation(onView, Gravity.TOP, 0, 0);
 
         return popupWindow;
     }
@@ -41,612 +44,146 @@ public class TimetableView extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.timetable_main, container, false);
+        view = inflater.inflate(R.layout.timetable_main, container, false);
 
+        // find and saves in the id of the buttons in the variable
         twelveAm = (Button) view.findViewById(R.id.Time12am);
+        oneAm = (Button) view.findViewById(R.id.Time1am);
+        twoAm = (Button) view.findViewById(R.id.Time2am);
+        threeAm = (Button) view.findViewById(R.id.Time3am);
+        fourAm = (Button) view.findViewById(R.id.Time4am);
+        fiveAm = (Button) view.findViewById(R.id.Time5am);
+
+        // don't forget to change the name of the variables
+//        twelveAm = (Button) view.findViewById(R.id.Time6am);
+//        twelveAm = (Button) view.findViewById(R.id.Time7am);
+//        twelveAm = (Button) view.findViewById(R.id.Time8am);
+//        twelveAm = (Button) view.findViewById(R.id.Time9am);
+//        twelveAm = (Button) view.findViewById(R.id.Time10am);
+//        twelveAm = (Button) view.findViewById(R.id.Time11am);
+//        twelveAm = (Button) view.findViewById(R.id.Time12pm);
+//        twelveAm = (Button) view.findViewById(R.id.Time1pm);
+//        twelveAm = (Button) view.findViewById(R.id.Time2pm);
+//        twelveAm = (Button) view.findViewById(R.id.Time3pm);
+//        twelveAm = (Button) view.findViewById(R.id.Time4pm);
+//        twelveAm = (Button) view.findViewById(R.id.Time5pm);
+//        twelveAm = (Button) view.findViewById(R.id.Time6pm);
+//        twelveAm = (Button) view.findViewById(R.id.Time7pm);
+//        twelveAm = (Button) view.findViewById(R.id.Time8pm);
+//        twelveAm = (Button) view.findViewById(R.id.Time9pm);
+//        twelveAm = (Button) view.findViewById(R.id.Time10pm);
+//        twelveAm = (Button) view.findViewById(R.id.Time11pm);
+//        twelveAm = (Button) view.findViewById(R.id.Time12pm);
+
         twelveAm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                View addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
 
-                confirmButton = addAppointment.findViewById(R.id.confirmButton);
+                // calls the appointmentButton
+                appointmentButton(twelveAm);
+            }
+        });
 
-                final PopupWindow createAppointment = displayPopupWindow(addAppointment, view);
-                createAppointment.setFocusable(true);
-                createAppointment.update();
+        oneAm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
 
-                confirmButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View vi) {
-                        userAppointment = createAppointment.getContentView().findViewById(R.id.appointmentText);
-                        appointmentName = userAppointment.getText().toString();
+                // calls the appointment Button
+                appointmentButton(oneAm);
+            }
+        });
 
-                        //Timetable timetable = new Timetable(appointmentName);
+        twoAm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
 
-                        // Just saving this to ui not to the timetable yet
-                        twelveAm.setText(appointmentName);
-                        createAppointment.dismiss();
-                    }
-                });
+                // calls the appointment Button
+                appointmentButton(twoAm);
+            }
+        });
+
+        threeAm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(threeAm);
+            }
+        });
+
+        fourAm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(fourAm);
+            }
+        });
+
+        fiveAm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(fiveAm);
             }
         });
 
         return view;
     }
 
-    // Please don't delete below using it as reference for code - John
+    public void appointmentButton(final Button clickedButton) {
+        // saves in the users clicked button
+        final Button clicked = clickedButton;
 
-    //    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//
-//        // 12 am button
-//        twelveAm = (Button) findViewById(R.id.Time12am);
-//        twelveAm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 1);
-//            }
-//        });
-//
-//        // 1 am button
-//        oneAm = (Button) findViewById(R.id.Time1am);
-//        oneAm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 2);
-//            }
-//        });
-//
-//        // 2 am button
-//        twoAm = (Button) findViewById(R.id.Time2am);
-//        twoAm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 3);
-//            }
-//        });
-//
-//        // 3 am button
-//        threeAm = (Button) findViewById(R.id.Time3am);
-//        threeAm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 4);
-//            }
-//        });
-//
-//        // 4 am button
-//        fourAm = (Button) findViewById(R.id.Time4am);
-//        fourAm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 5);
-//            }
-//        });
-//
-//        // 5 am button
-//        fiveAm = (Button) findViewById(R.id.Time5am);
-//        fiveAm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 6);
-//            }
-//        });
-//
-//        // 6 am button
-//        sixAm = (Button) findViewById(R.id.Time6am);
-//        sixAm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 7);
-//            }
-//        });
-//
-//        // 7 am button
-//        sevenAm = (Button) findViewById(R.id.Time7am);
-//        sevenAm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 8);
-//            }
-//        });
-//
-//        // 8 am button
-//        eightAm = (Button) findViewById(R.id.Time8am);
-//        eightAm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 9);
-//            }
-//        });
-//
-//
-//        nineAm = (Button) findViewById(R.id.Time9am);
-//        nineAm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 10);
-//            }
-//        });
-//
-//        tenAm = (Button) findViewById(R.id.Time10am);
-//        tenAm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 11);
-//            }
-//        });
-//
-//
-//        elevenAm = (Button) findViewById(R.id.Time11am);
-//        elevenAm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 12);
-//            }
-//        });
-//
-//        twelvePm = (Button) findViewById(R.id.Time12pm);
-//        twelvePm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 13);
-//            }
-//        });
-//
-//        onePm = (Button) findViewById(R.id.Time1pm);
-//        onePm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 14);
-//            }
-//        });
-//
-//        twoPm = (Button) findViewById(R.id.Time2pm);
-//        twoPm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 15);
-//            }
-//        });
-//
-//        threePm = (Button) findViewById(R.id.Time3pm);
-//        threePm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 16);
-//            }
-//        });
-//
-//        fourPm = (Button) findViewById(R.id.Time4pm);
-//        fourPm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 17);
-//            }
-//        });
-//
-//        fivePm = (Button) findViewById(R.id.Time5pm);
-//        fivePm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 18);
-//            }
-//        });
-//
-//        sixPm = (Button) findViewById(R.id.Time6pm);
-//        sixPm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 19);
-//            }
-//        });
-//
-//        sevenPm = (Button) findViewById(R.id.Time7pm);
-//        sevenPm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 20);
-//            }
-//        });
-//
-//        eightPm = (Button) findViewById(R.id.Time8pm);
-//        eightPm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 21);
-//            }
-//        });
-//
-//        ninePm = (Button) findViewById(R.id.Time9pm);
-//        ninePm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 22);
-//            }
-//        });
-//
-//        tenPm = (Button) findViewById(R.id.Time10pm);
-//        tenPm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 23);
-//            }
-//        });
-//
-//        elevenPm = (Button) findViewById(R.id.Time11pm);
-//        elevenPm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Calls and runs the Pop.java class
-//                Intent intent = new Intent(TimetableView.this, PopupWindow.class);
-//
-//                startActivityForResult(intent, 24);
-//            }
-//        });
-//    }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if (requestCode == 1) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                twelveAm.setText(result);
-//                twelveAm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                twelveAm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 2) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                oneAm.setText(result);
-//                oneAm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                oneAm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 3) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                twoAm.setText(result);
-//                twoAm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                twoAm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 4) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                threeAm.setText(result);
-//                threeAm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                threeAm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 5) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                fourAm.setText(result);
-//                fourAm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                fourAm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 6) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                fiveAm.setText(result);
-//                fiveAm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                fiveAm.setText("Nothing is selected");
-//            }
-//        }
-//
-//
-//        if (requestCode == 7) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                sixAm.setText(result);
-//                sixAm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                sixAm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 8) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                sevenAm.setText(result);
-//                sevenAm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                sevenAm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 9) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                eightAm.setText(result);
-//                eightAm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                eightAm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 10) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                nineAm.setText(result);
-//                nineAm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                nineAm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 11) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                tenAm.setText(result);
-//                tenAm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                tenAm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 12) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                elevenAm.setText(result);
-//                elevenAm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                elevenAm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 13) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                twelvePm.setText(result);
-//                twelvePm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                twelvePm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 14) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                onePm.setText(result);
-//                onePm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                onePm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 15) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                twoPm.setText(result);
-//                twoPm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                twoPm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 16) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                threePm.setText(result);
-//                threePm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                threePm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 17) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                fourPm.setText(result);
-//                fourPm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                fourPm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 18) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                fivePm.setText(result);
-//                fivePm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                fivePm.setText("Nothing is selected");
-//            }
-//        }
-//        if (requestCode == 19) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                sixPm.setText(result);
-//                sixPm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                sixPm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 20) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                sevenPm.setText(result);
-//                sevenPm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                sevenPm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 21) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                eightPm.setText(result);
-//                eightPm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                eightPm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 22) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                ninePm.setText(result);
-//                ninePm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                ninePm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 23) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                tenPm.setText(result);
-//                tenPm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                tenPm.setText("Nothing is selected");
-//            }
-//        }
-//
-//        if (requestCode == 24) {
-//            if (resultCode == RESULT_OK) {
-//                String result = data.getStringExtra("result");
-//                elevenPm.setText(result);
-//                elevenPm.setBackgroundColor(Color.GRAY);
-//            }
-//            if (resultCode == RESULT_CANCELED) {
-//
-//                elevenPm.setText("Nothing is selected");
-//            }
-//        }
-//    }
+        // finds and saves the id of the buttons to a variable
+        confirmButton = addAppointment.findViewById(R.id.confirmButton);
+        deleteButton = addAppointment.findViewById(R.id.deleteButton);
+
+        // creates a pop up view and calls the appointment_pop.xml
+        final PopupWindow createAppointment = displayPopupWindow(addAppointment, view);
+        createAppointment.setFocusable(true);
+        createAppointment.update();
+
+        // confirms the user appointment and saves in ui (for now)
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View vi) {
+                userAppointment = createAppointment.getContentView().findViewById(R.id.appointmentText);
+                appointmentName = userAppointment.getText().toString();
+
+                userNote = createAppointment.getContentView().findViewById(R.id.notes);
+                notes = userNote.getText().toString();
+
+                // Gets the current date
+                TextView currentDate = view.findViewById(R.id.Date);
+
+                // gets the alarm value (Hopefully)
+                Switch hasAlarm = createAppointment.getContentView().findViewById(R.id.Alarm);
+
+
+                // GOAL: save in data to timetable class
+                //Appointment appointment = new Appointment(currentDate, notes, hasAlarm, appointmentName);
+
+                // Just saving this to ui not to the timetable yet
+                clicked.setText(appointmentName);
+                createAppointment.dismiss();
+            }
+        });
+
+        // deletes the user appointment and replaces the text of the button to just a space
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View viee) {
+                clicked.setText(" ");
+                createAppointment.dismiss();
+            }
+        });
+    }
 }
