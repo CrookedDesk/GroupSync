@@ -51,8 +51,8 @@ public class GroupView extends Fragment {
                 //instantiate popup window
 
                 final PopupWindow createGroupPopupW = displayPopupWindow(addGroupPopupLayout, view);
-
-
+                createGroupPopupW.setFocusable(true);
+                createGroupPopupW.update();
 
                 //close the popup window on button click
                 confirmAddGroupBtn.setOnClickListener(new View.OnClickListener() {
@@ -60,11 +60,12 @@ public class GroupView extends Fragment {
                     public void onClick(View v) {
                         EditText name = createGroupPopupW.getContentView().findViewById(R.id.groupNameEditTxt); //Get text from user input
                         String grpName = name.getText().toString(); //save text into string
-                        Group newGrp = new Group(grpName); //create group with previous text
-                        if (currentUser != null) {
-                            currentUser.getGroups().add(newGrp);
-                        }
 
+                        if (currentUser != null)
+                        {
+                            Group newGrp = new Group(grpName, currentUser); //create group with previous text
+                            currentUser.addGroup(newGrp);
+                        }
 
                         //pass group to database
 
@@ -76,6 +77,8 @@ public class GroupView extends Fragment {
 
                 View inviteUserPopupLayout = inflater.inflate(R.layout.invite_group_popup, null);
                 final PopupWindow inviteUserPopupW = new PopupWindow(inviteUserPopupLayout, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                inviteUserPopupW.setFocusable(true);
+                inviteUserPopupW.update();
 
                 if (inviteUsersButton != null) {
                     inviteUsersButton.setOnClickListener(new View.OnClickListener() {
@@ -110,66 +113,4 @@ public class GroupView extends Fragment {
         this.currentUser = new User("DylanHarding", "sdp0982@autuni.ac.nz");
     }
 
-    public void changeName(String newName)
-    {
-        this.groupName = newName;
-    }
-
-    public void addUser(User user)
-    {
-        userList.add(user);
-    }
-
-    public void removeUser(User user)
-    {
-        if(userList.contains(user))
-        {
-            userList.remove(user);
-        }
-    }
-
-    public void addAppointment(Appointment newApp, int dayOfWeek)
-    {
-        this.timetable.getWeek().getDays().get(dayOfWeek).addAppointment(newApp);
-    }
-
-    public void editAppointment(Appointment oldApp)
-    {
-        //timetable.editApp(oldApp)
-    }
-
-    public void syncTimetable()
-    {/*syncing the users timetables
-        Timetable temp = new Timetable();
-        //copy group specific appointments into temp timetable
-
-        for(int i = 0; i < userList.size(); i++)
-        {
-            User currentUser = userList.get(i);
-            Timetable currentTable = currentUser.getTimetable();
-            for(//appointment in currentTable)
-            {
-                //if(appointment.getTime is in timetable)
-                //{
-                //  do nothing
-                //}
-                //else
-                //{
-                //  timetable.addAppointment(appointment.getTime, String groupname, etc)
-                //}
-            }
-            //replace group timetable with temp timetable
-        }
-        */
-    }
-
-    public String getGroupName()
-    {
-        return groupName;
-    }
-
-    public List<User> getUsers()
-    {
-        return userList;
-    }
 }

@@ -9,16 +9,10 @@ public class Group {
     private String groupName;
     private List<User> userList = new ArrayList<>();
     private Timetable timetable;
-    private User currentUser;
 
-    public Group(String groupName) {
+    public Group(String groupName, User currentUser) {
         this.groupName = groupName;
-        initiateTestUser();
         userList.add(currentUser); //initial user/creator
-    }
-
-    private void initiateTestUser() {
-        this.currentUser = new User("DylanHarding", "sdp0982@autuni.ac.nz");
     }
 
     public void changeName(String newName) {
@@ -82,4 +76,5 @@ public class Group {
     public List<User> getUsers() {
         return userList;
     }
+
 }
