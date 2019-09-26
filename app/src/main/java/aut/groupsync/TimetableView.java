@@ -27,8 +27,8 @@ public class TimetableView extends Fragment {
     Button twelvePm, onePm, twoPm, threePm, fourPm, fivePm, sixPm, sevenPm, eightPm, ninePm, tenPm, elevenPm;
 
     Button confirmButton;
-    EditText editText;
-    String userAppointment;
+    EditText userAppointment;
+    String appointmentName, appointment;
 
     public static PopupWindow displayPopupWindow(View popupLayout, View onView){
         final PopupWindow popupWindow = new PopupWindow(popupLayout, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -41,18 +41,33 @@ public class TimetableView extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.timetable_main, container, false);
+        final View view = inflater.inflate(R.layout.timetable_main, container, false);
 
         twelveAm = (Button) view.findViewById(R.id.Time12am);
         twelveAm.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View vie) {
                 View addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                confirmButton = addAppointment.findViewById(R.id.confirmButton);
 
                 final PopupWindow createAppointment = displayPopupWindow(addAppointment, view);
                 createAppointment.setFocusable(true);
                 createAppointment.update();
 
+                confirmButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View vi) {
+                        userAppointment = createAppointment.getContentView().findViewById(R.id.appointmentText);
+                        appointmentName = userAppointment.getText().toString();
+
+                        //Timetable timetable = new Timetable(appointmentName);
+
+                        // Just saving this to ui not to the timetable yet
+                        twelveAm.setText(appointmentName);
+                        createAppointment.dismiss();
+                    }
+                });
                 ///.setText(userAppointment);
             }
         });
