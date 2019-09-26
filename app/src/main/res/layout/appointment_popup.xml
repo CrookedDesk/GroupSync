@@ -49,6 +49,27 @@
                 android:hint="Appointment"
                 android:textAlignment="center"/>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Notes: "
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+
+            <EditText
+                android:id="@+id/appointmentName"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"/>
+
             <Button
                 android:id="@+id/confirmButton"
                 android:layout_width="100dp"
