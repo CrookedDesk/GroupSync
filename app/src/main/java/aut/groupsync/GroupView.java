@@ -20,7 +20,7 @@ public class GroupView extends Fragment {
     private String groupName;
     private List<User> userList = new ArrayList<>();
     private Timetable timetable;
-    private User currentUser;
+    public static User currentUser;
 
     public static PopupWindow displayPopupWindow(View popupLayout, View onView) {
         final PopupWindow popupWindow = new PopupWindow(popupLayout, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -60,6 +60,7 @@ public class GroupView extends Fragment {
                     public void onClick(View v) {
                         EditText name = createGroupPopupW.getContentView().findViewById(R.id.groupNameEditTxt); //Get text from user input
                         String grpName = name.getText().toString(); //save text into string
+
                         if (currentUser != null)
                         {
                             Group newGrp = new Group(grpName, currentUser); //create group with previous text
