@@ -56,7 +56,6 @@ public class AccountView extends Fragment {
     private View signUpForm;
     private ProgressBar passwordStrengthMeter;
     private PasswordStrengthService passwordStrengthService = new PasswordStrengthService();
-    private User newUser;
 
     public AccountView(IUserService userService) {
         this.userService = userService;
@@ -282,15 +281,12 @@ public class AccountView extends Fragment {
                         Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
                     }
                     break;
+
             }
     }
 
     private void setUserInfo(UserInfo userInfo) {
         this.userInfo = userInfo;
-        signUpEmail = getView().findViewById(R.id.sign_up_input_email);
-        String email = signUpEmail.getText().toString();
-        User newUser = new User(email, email);
-        this.newUser = newUser;
         render();
     }
 
@@ -301,5 +297,17 @@ public class AccountView extends Fragment {
             this.setUserInfo(new UserInfo(googleSignInAccount.getDisplayName(), googleSignInAccount.getEmail()));
         }
     }
-}
 
+    public Timetable getTimetable() {
+        return this.timetable;
+    }
+
+    public void setTimetable(Timetable timetable) {
+        this.timetable = timetable;
+    }
+
+    public List<GroupView> getGroups() {
+        return this.groups;
+    }
+
+}
