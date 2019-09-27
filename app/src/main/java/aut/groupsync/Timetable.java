@@ -12,9 +12,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Timetable extends Fragment {
+public class Timetable extends Fragment implements Serializable {
     private Week week;
     private int currentDayIndex;
 
