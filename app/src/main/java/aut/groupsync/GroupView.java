@@ -13,7 +13,8 @@ import android.widget.PopupWindow;
 import androidx.fragment.app.Fragment;
 
 public class GroupView extends Fragment {
-    private User currentUser;
+
+public static User currentUser;
 
     public static PopupWindow displayPopupWindow(View popupLayout, View onView) {
         final PopupWindow popupWindow = new PopupWindow(popupLayout, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
