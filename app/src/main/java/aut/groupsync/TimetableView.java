@@ -21,7 +21,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class TimetableView extends Fragment {
 
@@ -32,10 +35,10 @@ public class TimetableView extends Fragment {
     Button twelvePm, onePm, twoPm, threePm, fourPm, fivePm, sixPm, sevenPm, eightPm, ninePm, tenPm, elevenPm;
 
     EditText userAppointment, userNote;
-    String appointmentName, notes;
+    TextView currentDate;
+    String appointmentName, notes, currentDateTimeString;
     Button confirmButton, deleteButton;
     View addAppointment, view;
-    User test;
 
     public static PopupWindow displayPopupWindow(View popupLayout, View onView) {
         final PopupWindow popupWindow = new PopupWindow(popupLayout, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -50,12 +53,12 @@ public class TimetableView extends Fragment {
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.timetable_main, container, false);
 
-        // gets the current day and saves in the xml or the Date id
-//        test = new User();
-//
-//
-//        TextView currentDate = view.findViewById(R.id.Date);
-//        currentDate.setText("");
+        // Gets the current date and sets it in the app
+        currentDate = (TextView) view.findViewById(R.id.cDate);
+        Date today = Calendar.getInstance().getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        currentDateTimeString = formatter.format(today);
+        currentDate.setText(currentDateTimeString);
 
         // find and saves in the id of the buttons in the variable
         twelveAm = (Button) view.findViewById(R.id.Time12am);
@@ -65,7 +68,7 @@ public class TimetableView extends Fragment {
         fourAm = (Button) view.findViewById(R.id.Time4am);
         fiveAm = (Button) view.findViewById(R.id.Time5am);
 
-        // don't forget to change the name of the variables
+        // don't forget to change the name of these variables
 //        twelveAm = (Button) view.findViewById(R.id.Time6am);
 //        twelveAm = (Button) view.findViewById(R.id.Time7am);
 //        twelveAm = (Button) view.findViewById(R.id.Time8am);
@@ -171,9 +174,6 @@ public class TimetableView extends Fragment {
 
                 userNote = createAppointment.getContentView().findViewById(R.id.notes);
                 notes = userNote.getText().toString();
-
-                // Gets the current date
-
 
                 // gets the alarm value (Hopefully)
                 Switch hasAlarm = createAppointment.getContentView().findViewById(R.id.Alarm);
