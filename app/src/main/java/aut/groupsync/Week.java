@@ -1,10 +1,11 @@
 package aut.groupsync;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Week {
+public class Week implements Serializable {
 	private List<Day> days;
 
 	public Week(List<Day> days) {

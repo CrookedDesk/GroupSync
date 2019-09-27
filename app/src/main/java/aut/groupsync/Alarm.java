@@ -1,6 +1,8 @@
 package aut.groupsync;
 
-public class Alarm {
+import java.io.Serializable;
+
+public class Alarm implements Serializable {
 	private boolean enabled;
 	
 	public Alarm(boolean enabled) {
