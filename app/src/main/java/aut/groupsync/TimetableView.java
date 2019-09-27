@@ -177,10 +177,11 @@ public class TimetableView extends Fragment {
 
                 // gets the alarm value (Hopefully)
                 Switch hasAlarm = createAppointment.getContentView().findViewById(R.id.Alarm);
+                Boolean alarmState = hasAlarm.isChecked();
 
 //                test = new User();
 //                // GOAL: save in data to timetable class
-//                Appointment appointment = new Appointment(currentDate, notes, hasAlarm, appointmentName);
+//                Appointment appointment = new Appointment(currentDate, notes, alarmState, appointmentName);
 //                test.getTimetable().getWeek().getDays().get(1).addAppointment(appointment);
 
                 // Just saving this to ui not to the timetable yet
