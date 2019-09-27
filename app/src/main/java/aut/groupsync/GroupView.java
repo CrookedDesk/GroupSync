@@ -1,6 +1,5 @@
 package aut.groupsync;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,11 +15,11 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Group extends Fragment {
+public class GroupView extends Fragment {
     private String groupName;
-    private List<Account> userList = new ArrayList<>();
+    private List<AccountView> userList = new ArrayList<>();
     private Timetable timetable;
-    private Account currentUser;
+    private AccountView currentUser;
 
     public View onCreateView(final LayoutInflater inflater,
                              ViewGroup container,
@@ -53,7 +52,7 @@ public class Group extends Fragment {
                     public void onClick(View v) {
                         TextView name = (TextView) getView().findViewById(R.id.groupNameEditTxt); //Get text from user input
                         String grpName = name.getText().toString(); //save text into string
-                        Group newGrp = new Group(grpName); //create group with previous text
+                        GroupView newGrp = new GroupView(grpName); //create group with previous text
                         createGroupPopupW.dismiss();
                     }
                 });
@@ -91,7 +90,7 @@ public class Group extends Fragment {
         return view;
     }
 
-    Group(String groupName)
+    GroupView(String groupName)
     {
         this.groupName = groupName;
         initiateTestAccount();
@@ -100,7 +99,7 @@ public class Group extends Fragment {
 
     private void initiateTestAccount()
     {
-        this.currentUser = new Account(null);
+        this.currentUser = new AccountView(null);
     }
 
     public void changeName(String newName)
@@ -108,12 +107,12 @@ public class Group extends Fragment {
         this.groupName = newName;
     }
 
-    public void addUser(Account user)
+    public void addUser(AccountView user)
     {
         userList.add(user);
     }
 
-    public void removeUser(Account user)
+    public void removeUser(AccountView user)
     {
         if(userList.contains(user))
         {
@@ -163,7 +162,7 @@ public class Group extends Fragment {
 
         for(int i = 0; i < userList.size(); i++)
         {
-            Account currentUser = userList.get(i);
+            AccountView currentUser = userList.get(i);
             Timetable currentTable = currentUser.getTimetable();
             for(//appointment in currentTable)
             {
@@ -186,7 +185,7 @@ public class Group extends Fragment {
         return groupName;
     }
 
-    public List<Account> getUsers()
+    public List<AccountView> getUsers()
     {
         return userList;
     }
