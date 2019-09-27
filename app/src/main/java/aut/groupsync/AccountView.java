@@ -126,6 +126,7 @@ public class AccountView extends Fragment {
             public void onClick(View v) {
                 onSignUpConfirmButtonClick();
             }
+            
         });
         Button signUpCancelButton = view.findViewById(R.id.sign_up_cancel);
         signUpCancelButton.setOnClickListener(new View.OnClickListener() {
