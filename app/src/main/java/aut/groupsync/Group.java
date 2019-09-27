@@ -100,7 +100,7 @@ public class Group extends Fragment {
 
     private void initiateTestAccount()
     {
-        this.currentUser = new Account("DylanHarding", "sdp0982@autuni.ac.nz");
+        this.currentUser = new Account(null);
     }
 
     public void changeName(String newName)
