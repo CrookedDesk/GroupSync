@@ -54,6 +54,7 @@ public class TimetableView extends Fragment implements Serializable {
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.timetable_main, container, false);
 //
+        
         // Gets the current date and sets it in the app
         currentDate = (TextView) view.findViewById(R.id.cDate);
         Date today = Calendar.getInstance().getTime();
