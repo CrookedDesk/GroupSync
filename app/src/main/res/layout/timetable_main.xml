@@ -33,12 +33,12 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/Date"
+                android:id="@+id/cDate"
                 android:layout_width="344dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:text="Sunday"
+
                 android:textSize="20dp" />
 
         </LinearLayout>
