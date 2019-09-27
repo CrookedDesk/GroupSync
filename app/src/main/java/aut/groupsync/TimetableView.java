@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import java.util.Calendar;
+
 public class TimetableView extends Fragment {
 
     // AM buttons
@@ -32,6 +35,7 @@ public class TimetableView extends Fragment {
     String appointmentName, notes;
     Button confirmButton, deleteButton;
     View addAppointment, view;
+    User test;
 
     public static PopupWindow displayPopupWindow(View popupLayout, View onView) {
         final PopupWindow popupWindow = new PopupWindow(popupLayout, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -45,6 +49,13 @@ public class TimetableView extends Fragment {
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.timetable_main, container, false);
+
+        // gets the current day and saves in the xml or the Date id
+//        test = new User();
+//
+//
+//        TextView currentDate = view.findViewById(R.id.Date);
+//        currentDate.setText("");
 
         // find and saves in the id of the buttons in the variable
         twelveAm = (Button) view.findViewById(R.id.Time12am);
@@ -162,14 +173,15 @@ public class TimetableView extends Fragment {
                 notes = userNote.getText().toString();
 
                 // Gets the current date
-                TextView currentDate = view.findViewById(R.id.Date);
+
 
                 // gets the alarm value (Hopefully)
                 Switch hasAlarm = createAppointment.getContentView().findViewById(R.id.Alarm);
 
-
-                // GOAL: save in data to timetable class
-                //Appointment appointment = new Appointment(currentDate, notes, hasAlarm, appointmentName);
+//                test = new User();
+//                // GOAL: save in data to timetable class
+//                Appointment appointment = new Appointment(currentDate, notes, hasAlarm, appointmentName);
+//                test.getTimetable().getWeek().getDays().get(1).addAppointment(appointment);
 
                 // Just saving this to ui not to the timetable yet
                 clicked.setText(appointmentName);
