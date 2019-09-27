@@ -1,9 +1,10 @@
 package aut.groupsync;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Diary {
+public class Diary implements Serializable {
 	private List<Note> notes;
 
 	public Diary(List<Note> notes) {

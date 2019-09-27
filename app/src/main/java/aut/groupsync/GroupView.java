@@ -9,18 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GroupView extends Fragment {
-    private String groupName;
-    private List<User> userList = new ArrayList<>();
-    private Timetable timetable;
-    public static User currentUser;
+
+public static User currentUser;
 
     public static PopupWindow displayPopupWindow(View popupLayout, View onView) {
         final PopupWindow popupWindow = new PopupWindow(popupLayout, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -39,6 +33,16 @@ public class GroupView extends Fragment {
                 container, false);
         Button addGroupBtn = view.findViewById(R.id.addGroupBtn);
 
+        final Button GroupOne = (Button) view.findViewById(R.id.GroupOne);
+        GroupOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Group g = new Group("placeholder", currentUser);
+                g = g.read("beep", view);
+                String name = g.getGroupName();
+                if (name instanceof String) {GroupOne.setText(name);}
+            }
+        });
 
         addGroupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +51,6 @@ public class GroupView extends Fragment {
                 View addGroupPopupLayout = inflater.inflate(R.layout.add_group_popup,null);
 
                 Button confirmAddGroupBtn = addGroupPopupLayout.findViewById(R.id.confirmAddGroupBtn);
-
                 //instantiate popup window
 
                 final PopupWindow createGroupPopupW = displayPopupWindow(addGroupPopupLayout, view);
@@ -60,10 +63,11 @@ public class GroupView extends Fragment {
                     public void onClick(View v) {
                         EditText name = createGroupPopupW.getContentView().findViewById(R.id.groupNameEditTxt); //Get text from user input
                         String grpName = name.getText().toString(); //save text into string
-
+                        initiateTestUser();
                         if (currentUser != null)
                         {
                             Group newGrp = new Group(grpName, currentUser); //create group with previous text
+                            newGrp.save(v);
                             currentUser.addGroup(newGrp);
                         }
 
@@ -98,11 +102,7 @@ public class GroupView extends Fragment {
                             }
                         }
                     });
-
-
-
                 }
-
             }
         });
         return view;

@@ -5,16 +5,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="90dp"
+    android:paddingTop="60dp"
     tools:context="aut.groupsync.GroupView">
 
     <Button
         android:id="@+id/addGroupBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
         android:text="Create New Group"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:textStyle="italic" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@+id/addGroupBtn"
+        android:layout_marginTop="73dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/GroupOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:paddingBottom="20dp"
+                android:text="GROUP ONE"
+                android:textAllCaps="false"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/GroupTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:paddingBottom="20dp"
+                android:text="GROUP TWO"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/GroupThree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:paddingBottom="20dp"
+                android:text="GROUP THREE"
+                android:textSize="30sp" />
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </RelativeLayout>

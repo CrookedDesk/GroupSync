@@ -15,12 +15,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class GroupTest {
-    private Group createTestGroup() {
-        return new Group("testName");
-    }
-
     private User createTestUser() {
         return new User("testUsername", "testEmail@test.test");
+    }
+    private Group createTestGroup() {
+        return new Group("testName", createTestUser());
     }
 
     @Test
