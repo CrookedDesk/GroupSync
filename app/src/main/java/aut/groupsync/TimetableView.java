@@ -18,7 +18,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-public class TimetableView extends Fragment {
+import java.io.Serializable;
+
+public class TimetableView extends Fragment implements Serializable {
 
     // AM buttons
     Button twelveAm, oneAm, twoAm, threeAm, fourAm, fiveAm, sixAm, sevenAm, eightAm, nineAm, tenAm, elevenAm;

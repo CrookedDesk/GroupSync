@@ -1,6 +1,8 @@
 package aut.groupsync;
 
+import android.content.Context;
 import android.graphics.drawable.shapes.Shape;
+import android.view.View;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,11 +12,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Group {
+public class Group implements Serializable {
 
     private String groupName;
     private List<User> userList = new ArrayList<>();
@@ -87,11 +90,11 @@ public class Group {
         return userList;
     }
 
-    public void save()
+    public void save(View v)
     {
         try {
-            System.out.println("Test");
-            FileOutputStream fOut = new FileOutputStream("groups/" + groupName + ".txt");
+            File f = new File(v.getContext().getFilesDir() + "/groups/" + groupName + ".txt");
+            FileOutputStream fOut = new FileOutputStream(f);
             ObjectOutputStream oos = new ObjectOutputStream(fOut);
             oos.writeObject(this);
 
@@ -103,13 +106,15 @@ public class Group {
             System.out.println("IO Error");
         }
     }
-    public Group read()
+    public Group read(String name, View v)
     {
-        Group g = null;
+        Group g = new Group("placeholder", new User("placeholder", "placeholder"));
         try {
-            File f = new File("groups/" + groupName + ".txt");
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+            File f = new File(v.getContext().getFilesDir() + "/groups/" + name + ".txt");
+            FileInputStream fis = new FileInputStream(f);
+            ObjectInputStream ois = new ObjectInputStream(fis);
             g = (Group)ois.readObject();
+
             ois.close();
         } catch (FileNotFoundException ex) {
             System.out.println("File Error");
