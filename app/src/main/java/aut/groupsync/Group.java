@@ -93,7 +93,7 @@ public class Group implements Serializable {
     public void save(View v)
     {
         try {
-            File f = new File(v.getContext().getFilesDir() + "/groups/" + groupName + ".txt");
+            File f = new File(v.getContext().getFilesDir() + "/" + groupName + ".txt");
             FileOutputStream fOut = new FileOutputStream(f);
             ObjectOutputStream oos = new ObjectOutputStream(fOut);
             oos.writeObject(this);
@@ -110,7 +110,7 @@ public class Group implements Serializable {
     {
         Group g = new Group("placeholder", new User("placeholder", "placeholder"));
         try {
-            File f = new File(v.getContext().getFilesDir() + "/groups/" + name + ".txt");
+            File f = new File(v.getContext().getFilesDir() + "/" + name + ".txt");
             FileInputStream fis = new FileInputStream(f);
             ObjectInputStream ois = new ObjectInputStream(fis);
             g = (Group)ois.readObject();
