@@ -37,7 +37,14 @@ public class GroupView extends Fragment {
             public void onClick(View v) {
                 //instantiate the popup.xml layout file
                 View addGroupPopupLayout = inflater.inflate(R.layout.add_group_popup,null);
-
+                Button GroupOne = addGroupPopupLayout.findViewById(R.id.GroupOne);
+                GroupOne.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //Group g;
+                        //g.read();
+                    }
+                });
                 Button confirmAddGroupBtn = addGroupPopupLayout.findViewById(R.id.confirmAddGroupBtn);
                 //instantiate popup window
 
@@ -55,6 +62,7 @@ public class GroupView extends Fragment {
                         if (currentUser != null)
                         {
                             Group newGrp = new Group(grpName, currentUser); //create group with previous text
+                            newGrp.save();
                             currentUser.addGroup(newGrp);
                         }
 

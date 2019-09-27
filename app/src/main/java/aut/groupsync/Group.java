@@ -1,5 +1,15 @@
 package aut.groupsync;
 
+import android.graphics.drawable.shapes.Shape;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,4 +87,37 @@ public class Group {
         return userList;
     }
 
+    public void save()
+    {
+        try {
+            System.out.println("Test");
+            FileOutputStream fOut = new FileOutputStream("groups/" + groupName + ".txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fOut);
+            oos.writeObject(this);
+
+            oos.flush();
+            oos.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("File Error");
+        } catch (IOException e) {
+            System.out.println("IO Error");
+        }
+    }
+    public Group read()
+    {
+        Group g = null;
+        try {
+            File f = new File("groups/" + groupName + ".txt");
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+            g = (Group)ois.readObject();
+            ois.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("File Error");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Class not found Error");
+        } catch (IOException e) {
+            System.out.println("IO Exception");
+        }
+        return g;
+    }
 }
