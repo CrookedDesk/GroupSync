@@ -41,4 +41,6 @@ public class Timetable extends Fragment implements Serializable {
 		//week.getDays().get(calendar.get(Calendar.DAY_OF_WEEK));
         return this.week.getDays().get(this.currentDayIndex);
     }
+
+    // will try to connect database here or maybe in the main lmao idk
 }
