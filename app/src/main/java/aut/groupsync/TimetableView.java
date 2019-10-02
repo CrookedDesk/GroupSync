@@ -41,6 +41,7 @@ public class TimetableView extends Fragment implements Serializable {
     Button confirmButton, deleteButton;
     View addAppointment, view;
 
+
     public static PopupWindow displayPopupWindow(View popupLayout, View onView) {
         final PopupWindow popupWindow = new PopupWindow(popupLayout, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
