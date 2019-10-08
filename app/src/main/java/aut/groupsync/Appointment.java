@@ -29,6 +29,14 @@ public class Appointment extends Fragment implements Serializable {
 		this.reoccuring = reoccuring;
 	}
 
+	public String getTime()
+	{
+		String time;
+		time = date.toString();
+		//time.format into time only
+		return time;
+	}
+
 	public Note getNote() {
 		return this.note;
 	}
@@ -60,7 +68,7 @@ public class Appointment extends Fragment implements Serializable {
 	public void save(View v)
 	{
 		try {
-			File f = new File(v.getContext().getFilesDir() + "/appointments/" + name + ".txt");
+			File f = new File(v.getContext().getFilesDir() + "/" + name + ".txt");
 			FileOutputStream fOut = new FileOutputStream(f);
 			ObjectOutputStream oos = new ObjectOutputStream(fOut);
 			oos.writeObject(this);
@@ -78,7 +86,7 @@ public class Appointment extends Fragment implements Serializable {
 	{
 		Appointment a = new Appointment(new Date(), new Note("note"), true, "name", false);
 		try {
-			File f = new File(v.getContext().getFilesDir() + "/appointments/" + name + ".txt");
+			File f = new File(v.getContext().getFilesDir() + "/" + name + ".txt");
 			FileInputStream fis = new FileInputStream(f);
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			a = (Appointment)ois.readObject();

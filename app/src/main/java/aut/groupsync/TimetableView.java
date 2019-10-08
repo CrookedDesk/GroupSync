@@ -40,6 +40,8 @@ public class TimetableView extends Fragment implements Serializable {
     String appointmentName, notes, currentDateTimeString;
     Button confirmButton, deleteButton;
     View addAppointment, view;
+    User currentUser = new User("Name Nameson", "E@mail.com");
+    Date today;
 
     public static PopupWindow displayPopupWindow(View popupLayout, View onView) {
         final PopupWindow popupWindow = new PopupWindow(popupLayout, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -56,7 +58,7 @@ public class TimetableView extends Fragment implements Serializable {
 //
         // Gets the current date and sets it in the app
         currentDate = (TextView) view.findViewById(R.id.cDate);
-        Date today = Calendar.getInstance().getTime();
+        today = Calendar.getInstance().getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         currentDateTimeString = formatter.format(today);
         currentDate.setText(currentDateTimeString);
@@ -171,19 +173,18 @@ public class TimetableView extends Fragment implements Serializable {
             @Override
             public void onClick(View vi) {
                 userAppointment = createAppointment.getContentView().findViewById(R.id.appointmentText);
-                appointmentName = userAppointment.getText().toString();
+                appointmentName = cleanInput(userAppointment.getText().toString());
 
                 userNote = createAppointment.getContentView().findViewById(R.id.notes);
-                notes = userNote.getText().toString();
-
-                // gets the alarm value (Hopefully)
+                notes = cleanInput(userNote.getText().toString());
+                Note uNote = new Note(notes);
+                //gets the alarm value (Hopefully)
                 Switch hasAlarm = createAppointment.getContentView().findViewById(R.id.Alarm);
                 Boolean alarmState = hasAlarm.isChecked();
 
-//                test = new User();
-//                // GOAL: save in data to timetable class
-//                Appointment appointment = new Appointment(currentDate, notes, alarmState, appointmentName);
-//                test.getTimetable().getWeek().getDays().get(1).addAppointment(appointment);
+                // WIP?: save in data to timetable class
+                //Appointment appointment = new Appointment(today, uNote, alarmState, appointmentName, true);
+                //currentUser.getTimetable().getCurrentDay().addAppointment(appointment);
 
                 // Just saving this to ui not to the timetable yet
                 clicked.setText(appointmentName);
@@ -197,7 +198,27 @@ public class TimetableView extends Fragment implements Serializable {
             public void onClick(View viee) {
                 clicked.setText(" ");
                 createAppointment.dismiss();
+                //currentUser.getTimetable().getCurrentDay().removeAppointment(/*FORMAT INTO TIME SOMEHOW today.toString()*/);
             }
         });
+    }
+
+    //remove characters used in code to try and prevent injection
+    public String cleanInput(String input) {
+        String output = "";
+
+        boolean contains = (input.contains("<") || input.contains(">") || input.contains("{") || input.contains("}"));
+        if (contains)
+        {
+            for (char c : input.toCharArray())
+            {
+                if (c == '<' || c == '>' || c == '{' || c == '}') {/*DO NOT ADD TO OUTPUT*/}
+                else {
+                    output += c;
+                }
+            }
+        }
+
+        return output;
     }
 }

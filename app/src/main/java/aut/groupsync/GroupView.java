@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -33,14 +34,20 @@ public static User currentUser;
                 container, false);
         Button addGroupBtn = view.findViewById(R.id.addGroupBtn);
 
-        final Button GroupOne = (Button) view.findViewById(R.id.GroupOne);
-        GroupOne.setOnClickListener(new View.OnClickListener() {
+        final Button testButton = (Button) view.findViewById(R.id.testButton);
+        testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Group g = new Group("placeholder", currentUser);
                 g = g.read("beep", view);
-                String name = g.getGroupName();
-                if (name instanceof String) {GroupOne.setText(name);}
+
+                TextView groupName = (TextView) view.findViewById(R.id.textName);
+                TextView creatorName = (TextView) view.findViewById(R.id.textCreator);
+                TextView creatorEmail = (TextView) view.findViewById(R.id.textCreatorEmail);
+
+                if (g.getGroupName() instanceof String) {groupName.setText(g.getGroupName());}
+                if (g.getUsers().get(0).getUsername() instanceof String) {creatorName.setText(g.getUsers().get(0).getUsername()); }
+                if (g.getUsers().get(0).getEmail() instanceof String) {creatorEmail.setText(g.getUsers().get(0).getEmail()); }
             }
         });
 

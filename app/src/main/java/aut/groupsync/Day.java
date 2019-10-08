@@ -32,4 +32,15 @@ public class Day implements Serializable {
 	public void addAppointment(Appointment app) {
 		appointments.add(app);
 	}
+
+	public void removeAppointment(String time) {
+		for (Appointment a : appointments)
+		{
+			Appointment app = a;
+			if (a.getTime() == time)
+			{
+				appointments.remove(a);
+			}
+		}
+	}
 }

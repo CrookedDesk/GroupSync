@@ -62,6 +62,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new AccountView(userService);
                 title = "AccountView";
                 break;
+            case R.id.nav_notebook:
+                fragment = new DiaryView();
+                title = "DiaryView";
+                break;
         }
 
         if (fragment != null) {

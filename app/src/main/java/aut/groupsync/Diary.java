@@ -11,9 +11,7 @@ public class Diary implements Serializable {
 		this.notes = notes;
 	}
 
-	public Diary() {
-		this(new ArrayList<Note>());
-	}
+	public Diary() { this(new ArrayList<Note>()); }
 
 	public List<Note> getNotes() {
 		return this.notes;

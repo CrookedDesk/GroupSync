@@ -51,7 +51,7 @@ public class Group implements Serializable {
     public void addAppointment(Appointment newApp, DayOfWeek dayOfWeek) {
         //get information from input
         //save into string
-        this.timetable.getWeek(/*get whatever week you're on atm*/).getDays().get(dayOfWeek.ordinal()/*get from button number*/).addAppointment(/*string*/newApp);
+        this.timetable.getWeeks().get(0/*change this to currentWeek*/).getDays().get(dayOfWeek.ordinal()/*get from button number*/).addAppointment(/*string*/newApp);
     }
 
     public void editAppointment(Appointment oldApp) {
