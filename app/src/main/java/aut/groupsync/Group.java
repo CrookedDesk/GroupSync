@@ -58,7 +58,7 @@ public class Group implements Serializable {
         //timetable.editApp(oldApp)
     }
 
-    public void syncTimetable() {/*syncing the users timetables
+    public void syncTimetable() {
         Timetable temp = new Timetable();
         //copy group specific appointments into temp timetable
 
@@ -66,7 +66,7 @@ public class Group implements Serializable {
         {
             User currentUser = userList.get(i);
             Timetable currentTable = currentUser.getTimetable();
-            for(//appointment in currentTable)
+            for(;;)//appointment in current timetable
             {
                 //if(appointment.getTime is in timetable)
                 //{
@@ -79,7 +79,6 @@ public class Group implements Serializable {
             }
             //replace group timetable with temp timetable
         }
-        */
     }
 
     public String getGroupName() {
