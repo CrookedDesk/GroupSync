@@ -59,7 +59,7 @@ public class Group implements Serializable {
     }
 
     public void syncTimetable() {
-        Timetable temp = new Timetable();
+        //Timetable temp = new Timetable();
         //copy group specific appointments into temp timetable
 
         for(int i = 0; i < userList.size(); i++)

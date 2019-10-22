@@ -183,8 +183,8 @@ public class TimetableView extends Fragment implements Serializable {
                 Boolean alarmState = hasAlarm.isChecked();
 
                 // WIP?: save in data to timetable class
-                //Appointment appointment = new Appointment(today, uNote, alarmState, appointmentName, true);
-                //currentUser.getTimetable().getCurrentDay().addAppointment(appointment);
+                Appointment appointment = new Appointment(today, uNote, alarmState, appointmentName, true);
+                currentUser.getTimetable().getCurrentDay().addAppointment(appointment);
 
                 // Just saving this to ui not to the timetable yet
                 clicked.setText(appointmentName);

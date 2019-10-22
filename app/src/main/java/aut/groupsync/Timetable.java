@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,17 +28,19 @@ public class Timetable extends Fragment implements Serializable {
     private int currentWeekIndex;
     private int timetableID;
 
-//    public Timetable(Week week, int currentDayIndex) {
-//        this.week = week;
-//        if (currentDayIndex > 6) {
-//            currentDayIndex = 6;
-//        }
-//        if (currentDayIndex < 0) {
-//            currentDayIndex = 0;
-//        }
-//
-//        this.currentDayIndex = currentDayIndex;
-//    }
+    public Timetable(Week week) {
+        this.weeks = new ArrayList<Week>();
+        this.weeks.add(week);
+        if (currentDayIndex > 6) {
+            currentDayIndex = 6;
+        }
+        if (currentDayIndex < 0) {
+            currentDayIndex = 0;
+        }
+
+        this.currentDayIndex = 0;
+        this.currentWeekIndex = 0;
+    }
 
     public Day getCurrentDay() {
 		//Calendar calendar = Calendar.getInstance();

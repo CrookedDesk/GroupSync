@@ -1,13 +1,14 @@
 package aut.groupsync;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Day implements Serializable {
-	private List<Appointment> appointments;
+	private List<Appointment> appointments = new ArrayList<>();
 	private Date date;
 
 	public Day(Date date) {
