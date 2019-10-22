@@ -393,7 +393,7 @@ public class TimetableView extends Fragment implements Serializable {
         });
     }
 
-    //remove characters used in code to try and prevent injection
+    //remove characters used in code to try and prevent injections
     public String cleanInput(String input) {
         String output = input;
         boolean contains = (input.contains("<") || input.contains(">") || input.contains("{") || input.contains("}"));
