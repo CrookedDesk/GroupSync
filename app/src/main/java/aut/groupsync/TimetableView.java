@@ -90,8 +90,6 @@ public class TimetableView extends Fragment implements Serializable {
         elevenPm = (Button) view.findViewById(R.id.Time11pm);
         twelvePm = (Button) view.findViewById(R.id.Time12pm);
 
-
-
         twelveAm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
