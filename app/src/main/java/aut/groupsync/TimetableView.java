@@ -70,27 +70,27 @@ public class TimetableView extends Fragment implements Serializable {
         threeAm = (Button) view.findViewById(R.id.Time3am);
         fourAm = (Button) view.findViewById(R.id.Time4am);
         fiveAm = (Button) view.findViewById(R.id.Time5am);
+        sixAm = (Button) view.findViewById(R.id.Time6am);
+        sevenAm = (Button) view.findViewById(R.id.Time7am);
+        eightAm = (Button) view.findViewById(R.id.Time8am);
+        nineAm = (Button) view.findViewById(R.id.Time9am);
+        tenAm = (Button) view.findViewById(R.id.Time10am);
+        elevenAm = (Button) view.findViewById(R.id.Time11am);
+        twelvePm = (Button) view.findViewById(R.id.Time12pm);
+        onePm = (Button) view.findViewById(R.id.Time1pm);
+        twoPm = (Button) view.findViewById(R.id.Time2pm);
+        threePm = (Button) view.findViewById(R.id.Time3pm);
+        fourPm = (Button) view.findViewById(R.id.Time4pm);
+        fivePm = (Button) view.findViewById(R.id.Time5pm);
+        sixPm = (Button) view.findViewById(R.id.Time6pm);
+        sevenPm = (Button) view.findViewById(R.id.Time7pm);
+        eightPm = (Button) view.findViewById(R.id.Time8pm);
+        ninePm = (Button) view.findViewById(R.id.Time9pm);
+        tenPm = (Button) view.findViewById(R.id.Time10pm);
+        elevenPm = (Button) view.findViewById(R.id.Time11pm);
+        twelvePm = (Button) view.findViewById(R.id.Time12pm);
 
-        // don't forget to change the name of these variables
-//        twelveAm = (Button) view.findViewById(R.id.Time6am);
-//        twelveAm = (Button) view.findViewById(R.id.Time7am);
-//        twelveAm = (Button) view.findViewById(R.id.Time8am);
-//        twelveAm = (Button) view.findViewById(R.id.Time9am);
-//        twelveAm = (Button) view.findViewById(R.id.Time10am);
-//        twelveAm = (Button) view.findViewById(R.id.Time11am);
-//        twelveAm = (Button) view.findViewById(R.id.Time12pm);
-//        twelveAm = (Button) view.findViewById(R.id.Time1pm);
-//        twelveAm = (Button) view.findViewById(R.id.Time2pm);
-//        twelveAm = (Button) view.findViewById(R.id.Time3pm);
-//        twelveAm = (Button) view.findViewById(R.id.Time4pm);
-//        twelveAm = (Button) view.findViewById(R.id.Time5pm);
-//        twelveAm = (Button) view.findViewById(R.id.Time6pm);
-//        twelveAm = (Button) view.findViewById(R.id.Time7pm);
-//        twelveAm = (Button) view.findViewById(R.id.Time8pm);
-//        twelveAm = (Button) view.findViewById(R.id.Time9pm);
-//        twelveAm = (Button) view.findViewById(R.id.Time10pm);
-//        twelveAm = (Button) view.findViewById(R.id.Time11pm);
-//        twelveAm = (Button) view.findViewById(R.id.Time12pm);
+
 
         twelveAm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,6 +152,196 @@ public class TimetableView extends Fragment implements Serializable {
             }
         });
 
+        sixAm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(sixAm);
+            }
+        });
+
+        sevenAm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(sevenAm);
+            }
+        });
+
+        eightAm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(eightAm);
+            }
+        });
+
+        nineAm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(nineAm);
+            }
+        });
+
+        tenAm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(tenAm);
+            }
+        });
+
+        elevenAm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(elevenPm);
+            }
+        });
+
+        twelvePm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(twelvePm);
+            }
+        });
+
+        onePm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(onePm);
+            }
+        });
+
+        twoPm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(twoPm);
+            }
+        });
+
+        threePm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(threePm);
+            }
+        });
+
+        fourPm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(fourPm);
+            }
+        });
+
+        fivePm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(fivePm);
+            }
+        });
+
+        sixPm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(sixPm);
+            }
+        });
+
+        sevenPm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(sevenPm);
+            }
+        });
+
+        eightPm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(eightPm);
+            }
+        });
+
+        ninePm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(ninePm);
+            }
+        });
+
+        tenPm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(tenPm);
+            }
+        });
+
+        elevenPm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(elevenPm);
+            }
+        });
+
+        twelvePm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAppointment = inflater.inflate(R.layout.appointment_popup, null);
+
+                // calls the appointment Button
+                appointmentButton(twelvePm);
+            }
+        });
+
         return view;
     }
 
@@ -205,9 +395,10 @@ public class TimetableView extends Fragment implements Serializable {
 
     //remove characters used in code to try and prevent injection
     public String cleanInput(String input) {
-        String output = "";
+        String output = input;
         boolean contains = (input.contains("<") || input.contains(">") || input.contains("{") || input.contains("}"));
         if (contains) {
+            output = "";
             for (char c : input.toCharArray()) {
                 if (c == '<' || c == '>' || c == '{' || c == '}') {/*DO NOT ADD TO OUTPUT*/}
                 else {
